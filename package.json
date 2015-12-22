@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/ptretyakov/popser_ext/issues"
   },
-  "homepage": "https://github.com/ptretyakov/popser_ext#readme"
+  "homepage": "https://github.com/ptretyakov/popser_ext#readme",
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "backbone": "^1.2.3",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-ruby-haml": "0.0.6",
+    "gulp-sourcemaps": "^1.6.0"
+  }
 }
