@@ -44,4 +44,9 @@ gulp.task('move-images' , () => {
 		.pipe( gulp.dest( dest.to.images ) );
 });
 
+gulp.task('ext-chrome:watch' , () => {
+	gulp.watch( dest.from.html 	+ 'popup.html' 	, [ 'move-popup-html' ] );
+	gulp.watch( dest.from.js 	+ 'app.js' 		, [ 'move-app-js' ] 	);
+});
+
 gulp.task('make-ext-chrome' , ['move-popup-html' , 'move-app-js' , 'move-manifest-json' , 'move-images' ]);

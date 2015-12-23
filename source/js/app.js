@@ -1,1 +1,3 @@
-const mytest = "Hello world!";
+import Backbone from 'backbone';
+
+console.log('Backbone' , Backbone);

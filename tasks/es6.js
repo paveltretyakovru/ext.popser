@@ -1,18 +1,21 @@
 const gulp 			= require( 'gulp' 			);
-const babel 		= require( 'gulp-babel' 	);
-const concat 		= require( 'gulp-concat' 	);
-const sourcemaps 	= require( 'gulp-sourcemaps');
+const browserify 	= require( 'browserify');
+const babelify 		= require( 'babelify' );
+const source 		= require( 'vinyl-source-stream' );
+//const fs 			= require( 'fs' );
 
-gulp.task( 'es6' , () => {
-	console.log('ES6 task');
+const dest 	= { from : { js : 'source/js/**/*.js' , app : 'source/js/app.js' } , to : { app : 'public/js/' } }
 
-	return gulp.src('source/js/**/*.js')
-		.pipe( sourcemaps.init() )
-		.pipe( babel({
-			presets : ['es2015']
-		}))
-		.pipe( concat( 'app.js' ) 		)
-		.pipe( sourcemaps.write( '.' ) 	)
-		.pipe( gulp.dest('public/js') 	);
+gulp.task( 'es6:compile' , () => {
+	return browserify( { entries : dest.from.app , debug: true } )
+    	.transform(babelify)
+        .bundle()
+        .pipe( source('app.js') )
+        .pipe(gulp.dest( dest.to.app ));
+} );
 
+gulp.task( 'es6:watch' , () => {
+	gulp.watch( dest.from.js , [ 'es6:compile']);
 });
+
+gulp.task( 'es6' , [ 'es6:compile' ] );
