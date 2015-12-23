@@ -11,7 +11,7 @@ gulp.task( 'es6' , () => {
 		.pipe( babel({
 			presets : ['es2015']
 		}))
-		.pipe( concat( 'all.js' ) 		)
+		.pipe( concat( 'app.js' ) 		)
 		.pipe( sourcemaps.write( '.' ) 	)
 		.pipe( gulp.dest('public/js') 	);
 
