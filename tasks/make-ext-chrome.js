@@ -60,8 +60,9 @@ gulp.task('move-images' , () => {
 
 // Задача следит за изменниями файлов
 gulp.task('ext-chrome:watch' , () => {
-	gulp.watch( dest.from.html 	+ 'popup.html' 	, [ 'move-popup-html' ] );
-	gulp.watch( dest.from.js 	+ 'app.js' 		, [ 'move-app-js' ] 	);
+	gulp.watch( dest.from.html 	+ 'popup.html' 	, [ 'move-popup-html' 		] );
+	gulp.watch( dest.from.js 	+ 'app.js' 		, [ 'move-app-js' 			] );
+	gulp.watch( dest.from.manifest 				, [ 'move-manifest-json' 	] );
 });
 
 gulp.task('make-ext-chrome' , ['move-popup-html' , 'move-app-js' , 'move-manifest-json' , 'move-images' ]);

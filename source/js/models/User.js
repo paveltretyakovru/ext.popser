@@ -7,13 +7,13 @@ class User extends Backbone.Model {
 
 	get defaults() {
 		return {
-			email 		: 'test login' ,
+			email 		: '' ,
 			name 		: '' ,
 			password	: ''
 		} 
 	}
 }
 
-window.app.user = new User();
+window.user = new User();
 
 export default User;

@@ -29,7 +29,7 @@ gulp.task( 'es6:compile' , () => {
         .pipe( source( 'app.js' ) )
         .pipe( buffer() )
         .pipe( sourcemaps.init({loadMaps: true}))
-        .pipe( uglify() )
+        //.pipe( uglify() )
         .pipe( sourcemaps.write( '.' ) )
         .pipe( gulp.dest( dest.to.app ) );
 } );
