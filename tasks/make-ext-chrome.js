@@ -1,3 +1,9 @@
+/**
+ * Задачи для сборки расширения для Chrome
+ * Файлы собираются в каталог: extension/chrome
+ * Расширение пересобирается при изменении app.js и haml файлов
+ */
+
 const gulp = require( 'gulp' );
 
 const dest = {
@@ -16,6 +22,7 @@ const dest = {
 	}
 }
 
+// Задача для перемещения HTML файлов
 gulp.task('move-popup-html' , () => {
 	console.log('Move index-html task!');
 
@@ -23,13 +30,19 @@ gulp.task('move-popup-html' , () => {
 		.pipe( gulp.dest( dest.to.html ) );
 });
 
+// Задача для перемещения главного скрипта приложения
 gulp.task('move-app-js' , () => {
 	console.log('Move app.js task');
 
 	gulp.src( dest.from.js + 'app.js' )
 		.pipe( gulp.dest( dest.to.js ) );
+
+	// А так же его карты
+	gulp.src( dest.from.js + 'app.js.map' )
+		.pipe( gulp.dest( dest.to.js ) );
 });
 
+// Задача переносит JSON файлы
 gulp.task('move-manifest-json' , () => {
 	console.log('Move manifest task');
 
@@ -37,6 +50,7 @@ gulp.task('move-manifest-json' , () => {
 		.pipe( gulp.dest( dest.to.manifest ) );
 });
 
+// Задача переноси изображения для работы расширения
 gulp.task('move-images' , () => {
 	console.log('Move images task');
 
@@ -44,6 +58,7 @@ gulp.task('move-images' , () => {
 		.pipe( gulp.dest( dest.to.images ) );
 });
 
+// Задача следит за изменниями файлов
 gulp.task('ext-chrome:watch' , () => {
 	gulp.watch( dest.from.html 	+ 'popup.html' 	, [ 'move-popup-html' ] );
 	gulp.watch( dest.from.js 	+ 'app.js' 		, [ 'move-app-js' ] 	);

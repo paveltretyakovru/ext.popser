@@ -1,14 +1,14 @@
 import $ 		from 'jquery';
 import Backbone from 'backbone';
-import Desktop 	from './routes/desktop';
+import Desktop 	from './controllers/desktop';
 
 class Application {
   constructor() {
-    new Desktop();
+    this.controller = new Desktop();
 
     Backbone.history.start();
   }
 
 }
 
-new Application();
+window.app = new Application();

@@ -1,4 +1,6 @@
 import Backbone from 'backbone';
+import Home 	from '../routes/home';
+import User 	from '../models/User';
 
 class Desktop extends Backbone.Router {
 	constructor() {
@@ -12,7 +14,7 @@ class Desktop extends Backbone.Router {
 	}
 
 	home() {
-		console.log('This is home router :)');
+		new Home();
 	}
 }
 
