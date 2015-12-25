@@ -1,10 +1,11 @@
-const gulp 			= require( 'gulp' 			);
+const gulp 			= require( 'gulp' );
 const browserify 	= require( 'browserify');
 const babelify 		= require( 'babelify' );
 const source 		= require( 'vinyl-source-stream' );
 const sourcemaps 	= require( 'gulp-sourcemaps' );
-const uglify 		= require('gulp-uglify');
-const buffer 		= require('vinyl-buffer');
+const uglify 		= require( 'gulp-uglify' );
+const buffer 		= require( 'vinyl-buffer' );
+const stringify		= require( 'stringify' );
 
 const dest 	= {
 	from: { js 	: 'source/js/**/*.js' , app : 'source/js/app.js' } ,
@@ -12,7 +13,14 @@ const dest 	= {
 }
 
 gulp.task( 'es6:compile' , () => {
-	return browserify({	entries : dest.from.app, debug : true })
+	return browserify({
+			entries 	: dest.from.app,
+			debug 		: true ,
+			transform 	: stringify({
+				extensions 	: [ '.html' ] ,
+				minify 		: true
+			})
+		})
     	.transform(babelify)
         .bundle()
         .pipe( source( 'app.js' ) )

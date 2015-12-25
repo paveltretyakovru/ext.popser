@@ -17,7 +17,7 @@ class Desktop extends Backbone.Router {
 		super();
 		
 		this.routes = { ''	: 'home' }
-		
+
 		$.get( host + 'test', (json, textStatus) => {
 			console.log('Result get: ' , json);
 
