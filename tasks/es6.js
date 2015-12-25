@@ -17,7 +17,7 @@ gulp.task( 'es6:compile' , () => {
 			entries 	: dest.from.app,
 			debug 		: true ,
 			transform 	: stringify({
-				extensions 	: [ '.html' ] ,
+				extensions 	: [ '.hbs' , '.html' ] ,
 				minify 		: true
 			})
 		})
