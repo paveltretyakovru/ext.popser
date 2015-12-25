@@ -5,6 +5,8 @@ class User extends Backbone.Model {
 		super();
 	}
 
+	get urlRoot() { return '/users' }
+
 	get defaults() {
 		return {
 			email 		: '' ,

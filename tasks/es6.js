@@ -7,23 +7,12 @@ const uglify 		= require('gulp-uglify');
 const buffer 		= require('vinyl-buffer');
 
 const dest 	= {
-
-	from: {
-		js 	: 'source/js/**/*.js' ,
-		app : 'source/js/app.js'
-	} ,
-
-	to 	: {
-		app : 'public/js/'
-	}
-
+	from: { js 	: 'source/js/**/*.js' , app : 'source/js/app.js' } ,
+	to 	: {	app : 'public/js/' }
 }
 
-// .pipe( sourcemaps.init() )
-// .pipe( sourcemaps.write( '.' ) )
-
 gulp.task( 'es6:compile' , () => {
-	return browserify( { entries : dest.from.app , debug: true } )
+	return browserify({	entries : dest.from.app, debug : true })
     	.transform(babelify)
         .bundle()
         .pipe( source( 'app.js' ) )

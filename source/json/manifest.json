@@ -9,11 +9,11 @@
 		"default_title" : "Popser!" 			, 
 		"default_icon" 	: "images/popcorn.png"	,
 		"default_popup" : "popup.html"
-	}
+	} ,
 
-	"permissions" 		: {
-		"activeTab" 		,
-		"http://popser.app" ,
+	"permissions" : [
+		"activeTab" 	,
+		"http://popser.app/*" 	,
 		"cookies"
-	} 
+	] 
 }
