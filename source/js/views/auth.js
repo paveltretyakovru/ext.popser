@@ -6,21 +6,38 @@ import template 	from '../../hbs/auth.hbs';
 import { host } 	from '../libs/constants';
 
 export class Auth extends Backbone.View {
-  constructor() {
-    super();
-  }
-  get el (){ return '#wrapper' }
+	constructor() {
+		super();
 
-  get events() {
-  	return {
-  		'click 	#button-submit-login' 		: 'sendLogin' ,		// Аутентификация
-  		'parent #button-submit-registrate' 	: 'sendRegistrate'	// Регистрация
-  	}
-  }
+		this.$html 	= $( 'html' );
+		this.$body 	= $( 'body' );
+		//this.$el 	= $( '#wrapper' );
+	}
 
-  get render (){
-	return () => { document.querySelectorAll(this.el)[0].innerHTML = template; }
-  }
+	get el() { return '#wrapper' }
+
+	get events() {
+		return {
+			'click 	#button-submit-login' 		: 'sendLogin' ,			// Аутентификация
+			'click  #button-submit-registrate' 	: 'sendRegistrate' ,	// Регистрация
+			'change input[type=checkbox]'		: 'changeAccordion' 	// Событие при изменении аккордиона
+		}
+	}
+
+	get render (){
+		return () => { document.querySelectorAll(this.el)[0].innerHTML = template; }
+	}
+
+	/**
+	 * Изменяет размер поповера после выбора пунктов аккордиона
+	 * @return {void} изменяет размер
+	 */
+	get changeAccordion () {
+		return ( e ) => {
+			this.$body.height( this.$el.height() );			
+			this.$html.height( this.$el.height() );
+		}
+	}
   
   /**
    * Срабатывает при отправке формы логина

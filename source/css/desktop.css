@@ -6,10 +6,8 @@ footer , header { text-align: center }
 input ,button	{ width: 100%; border: 1px dashed #FB7D8C; color: #FB7D8C; padding: 3px; margin-bottom: 5px; font-size: 16px }
 button 	{ background-color: #FB7D8C; color: #fff; border-style: solid; }
 
-#wrapper {
-	width: 200px;
-	padding: 16px;
-}
+#wrapper 	{ width: 200px; padding: 16px; }
+.hello-image{ text-align: center }
 
 .transition, form, ul li i:before, ul li i:after { transition: all 0.25s ease-in-out; }
 .flipIn, h1, ul li { animation: flipdown 0.5s ease both; }
@@ -28,7 +26,7 @@ button 	{ background-color: #FB7D8C; color: #fff; border-style: solid; }
 /* Accordion code */
 
 
-h2 {
+.accordion h2 {
   font-size: 18px;
   font-weight: 300;
   letter-spacing: 1px;
@@ -38,7 +36,7 @@ h2 {
   cursor: pointer;
 }
 
-p {
+.accordion p {
   color: rgba(48, 69, 92, 0.8);
   font-size: 17px;
   line-height: 26px;
@@ -52,51 +50,51 @@ p {
   z-index: 2;
 }
 
-ul {
+.accordion ul {
   list-style: none;
   perspective: 900;
   padding: 0;
   margin: 0;
 }
-ul li {
+.accordion ul li {
   position: relative;
   padding: 0;
   margin: 0;
   padding-top: 9px;
   border-top: 1px dotted #dce7eb;
 }
-ul li:nth-of-type(1) {
+.accordion ul li:nth-of-type(1) {
   animation-delay: 0.5s;
 }
-ul li:nth-of-type(2) {
+.accordion ul li:nth-of-type(2) {
   animation-delay: 0.75s;
 }
-ul li:nth-of-type(3) {
+.accordion ul li:nth-of-type(3) {
   animation-delay: 1s;
 }
-ul li:last-of-type {
+.accordion ul li:last-of-type {
   padding-bottom: 0;
 }
-ul li i {
+.accordion ul li i {
   position: absolute;
   transform: translate(-6px, 0);
   margin-top: 9px;
   right: 0;
 }
-ul li i:before, ul li i:after {
+.accordion ul li i:before, .accordion ul li i:after {
   content: "";
   position: absolute;
   background-color: #ff6873;
   width: 3px;
   height: 9px;
 }
-ul li i:before {
+.accordion ul li i:before {
   transform: translate(-2px, 0) rotate(45deg);
 }
-ul li i:after {
+.accordion ul li i:after {
   transform: translate(2px, 0) rotate(-45deg);
 }
-ul li input[type=checkbox] {
+.accordion ul li input[type=checkbox] {
   position: absolute;
   cursor: pointer;
   width: 100%;
@@ -104,16 +102,16 @@ ul li input[type=checkbox] {
   z-index: 1;
   opacity: 0;
 }
-ul li input[type=checkbox]:checked ~ p {
+.accordion ul li input[type=checkbox]:checked ~ p {
   margin-top: 0;
   max-height: 0;
   opacity: 0;
   transform: translate(0, 50%);
 }
-ul li input[type=checkbox]:checked ~ i:before {
+.accordion ul li input[type=checkbox]:checked ~ i:before {
   transform: translate(2px, 0) rotate(45deg);
 }
-ul li input[type=checkbox]:checked ~ i:after {
+.accordion ul li input[type=checkbox]:checked ~ i:after {
   transform: translate(-2px, 0) rotate(-45deg);
 }
 
