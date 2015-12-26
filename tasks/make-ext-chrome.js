@@ -11,14 +11,16 @@ const dest = {
 		html 	: 'public/html/',
 		js 		: 'public/js/'	,
 		images 	: 'public/images/' ,
-		manifest: 'source/json/manifest.json'
+		manifest: 'source/json/manifest.json' ,
+		css 	: 'source/css/'
 	} ,
 
 	to 	: {
 		html 	: 'extension/chrome/' ,
 		js  	: 'extension/chrome/js/' ,
 		images 	: 'extension/chrome/images/' ,
-		manifest: 'extension/chrome/'
+		manifest: 'extension/chrome/' ,
+		css 	: 'extension/chrome/css/'
 	}
 }
 
@@ -50,19 +52,18 @@ gulp.task('move-manifest-json' , () => {
 		.pipe( gulp.dest( dest.to.manifest ) );
 });
 
-// Задача переноси изображения для работы расширения
-gulp.task('move-images' , () => {
-	console.log('Move images task');
+// Задача переноси изображения
+gulp.task('move-images' , () => { gulp.src( dest.from.images + '**/*.*' ).pipe( gulp.dest( dest.to.images ) ); } );
 
-	gulp.src( dest.from.images + '**/*.*' )
-		.pipe( gulp.dest( dest.to.images ) );
-});
+// Задача переносит css
+gulp.task('move-css' , () => { gulp.src( dest.from.css + '**/*.*' ).pipe( gulp.dest( dest.to.css ) ); } );
 
 // Задача следит за изменниями файлов
 gulp.task('ext-chrome:watch' , () => {
-	gulp.watch( dest.from.html 	+ 'popup.html' 	, [ 'move-popup-html' 		] );
+	gulp.watch( dest.from.html 	+ 'popup.html' 	, [ 'move-popup-html' , 'move-images' ] );
 	gulp.watch( dest.from.js 	+ 'app.js' 		, [ 'move-app-js' 			] );
 	gulp.watch( dest.from.manifest 				, [ 'move-manifest-json' 	] );
+	gulp.watch( dest.from.css 	+ '**/*.css'	, [ 'move-css' 				] );
 });
 
-gulp.task('make-ext-chrome' , ['move-popup-html' , 'move-app-js' , 'move-manifest-json' , 'move-images' ]);
+gulp.task('make-ext-chrome' , ['move-popup-html' , 'move-app-js' , 'move-manifest-json' , 'move-images' , 'move-css' ]);

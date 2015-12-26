@@ -8,7 +8,13 @@ const buffer 		= require( 'vinyl-buffer' );
 const stringify		= require( 'stringify' );
 
 const dest 	= {
-	from: { js 	: 'source/js/**/*.js' , app : 'source/js/app.js' } ,
+	
+	from: { 
+		js 	: 'source/js/**/*.js' 	, 
+		app : 'source/js/app.js' 	,
+		hbs : 'source/hbs/**/*.hbs'
+	} ,
+
 	to 	: {	app : 'public/js/' }
 }
 
@@ -32,7 +38,8 @@ gulp.task( 'es6:compile' , () => {
 } );
 
 gulp.task( 'es6:watch' , () => {
-	gulp.watch( dest.from.js , [ 'es6:compile']);
+	gulp.watch( dest.from.js  , [ 'es6:compile' ] );
+	gulp.watch( dest.from.hbs , [ 'es6:compile' ] );
 });
 
 gulp.task( 'es6' , [ 'es6:compile' ] );

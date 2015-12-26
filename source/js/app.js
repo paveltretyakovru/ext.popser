@@ -4,6 +4,11 @@ import Desktop 	from './controllers/desktop';
 
 class Application {
   constructor() {
+	
+	chrome.fontSettings.setFont({
+		genericFamily: 'sansserif', script: 'Cyrl', fontId: 'MS PGothic'
+	});
+
     this.controller = new Desktop();
 
     Backbone.history.start();
