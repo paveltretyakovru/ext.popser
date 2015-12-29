@@ -2,6 +2,8 @@
 	<img src="images/cat_popcorn.png" style="width:50%">
 </div>
 
+<a href="/auth/check" class="js-auth-check">Проверить авторизацию</a>
+
 <div class="accordion">
 	<ul>
 		<li>
@@ -27,6 +29,15 @@
 			</p>
 		</li>
 	</ul>
+</div>
+
+<div>
+	<form method="post" action="http://popser.app/auth/login" >
+		<input name="name" 		type="text" 	placeholder="name" />
+		<input name="email" 	type="text" 	placeholder="email" />
+		<input name="password" 	type="password" placeholder="пароль" />
+		<input type="submit" value="Отрпавить" />
+	</form>
 </div>
 
 

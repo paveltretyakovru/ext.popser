@@ -18,15 +18,41 @@ export class Auth extends Backbone.View {
 
 	get events() {
 		return {
-			'click 	#button-submit-login' 		: 'sendLogin' ,			// Аутентификация
-			'click  #button-submit-registrate' 	: 'sendRegistrate' ,	// Регистрация
-			'change input[type=checkbox]'		: 'changeAccordion' 	// Событие при изменении аккордиона
+			'click #button-submit-login'     : 'sendLogin'       , // Аутентификация
+			'click #button-submit-registrate': 'sendRegistrate'  , // Регистрация
+			'click .js-auth-check'           : 'checkAuth'       , // Проверка авторизации
+      'change input[type=checkbox]'		 : 'changeAccordion' , // Событие при изменении аккордиона
 		}
 	}
 
 	get render (){
 		return () => { document.querySelectorAll(this.el)[0].innerHTML = template; }
 	}
+
+  get checkAuth () {
+    return ( e ) => {
+      e.preventDefault();
+      let url           = 'http://popser.app/auth/check';
+      let checkCallback = ( data ) => {
+        console.log('Check auth answer' , data);
+      }
+
+      $.ajax({
+        url: url
+      })
+      .done( ( data ) => {
+        checkCallback();
+      })
+      .fail( () => {
+        console.log("error");
+      })
+      .always( () => {
+        console.log("complete");
+      });
+      
+
+    }
+  }
 
 	/**
 	 * Изменяет размер поповера после выбора пунктов аккордиона
@@ -72,11 +98,11 @@ export class Auth extends Backbone.View {
   		let $form  = $( '#block-registrate' );
   		let $email = $form.find('input[name=email]');
   		let $pass  = $form.find('input[name=password]');
-  		let $repass= $form.find('input[name=repassword]');
+  		let $name  = $form.find('input[name=name]');
   		let data   = {
-  			email 		: $email.val() 	,
-  			password 	: $pass.val() 	,
-  			repassword 	: $repass.val()
+  			email 	 : $email.val() 	,
+  			password : $pass.val() 	,
+  			name 	   : $name.val()
   		}
 
   		$.post( host + 'auth/registrate', data)	// Отрпавляем форму регистрации на сервер
@@ -89,6 +115,8 @@ export class Auth extends Backbone.View {
   							console.error( 'Такой пользователь существует' );
   						case 'error'	:
   							console.error( 'Произошла ошибка при регистрации' );
+              case 'dailed' :
+                console.error( 'Неправильно заполнена форма регистрации' );
   					}
   				}
   			})
