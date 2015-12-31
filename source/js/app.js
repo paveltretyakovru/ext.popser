@@ -1,6 +1,10 @@
+'user strict';
+
 import $ 		from 'jquery';
 import Backbone from 'backbone';
 import Desktop 	from './controllers/desktop';
+
+import adder 	from './libs/adder';
 
 class Application {
   constructor() {

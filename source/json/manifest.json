@@ -13,7 +13,8 @@
 
 	"permissions" : [
 		"activeTab" 	,
-		"http://popser.app/*" 	,
+		"http://back.popser.app/*" 	,
+		"https://maxcdn.bootstrapcdn.com/*" ,
 		"cookies" ,
 		"fontSettings"
 	] 

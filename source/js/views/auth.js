@@ -1,9 +1,10 @@
 'use strict';
 
-import $ 			from 'jquery';
-import Backbone 	from 'backbone';
-import template 	from '../../hbs/auth.hbs';
-import { host } 	from '../libs/constants';
+import $ 			       from 'jquery';
+import Backbone 	   from 'backbone';
+import template 	   from '../../hbs/auth.hbs';
+import { host , routes } 	   from '../libs/constants';
+import { checkAuth } from '../libs/functions/checkauth';
 
 export class Auth extends Backbone.View {
 	constructor() {
@@ -19,37 +20,33 @@ export class Auth extends Backbone.View {
 	get events() {
 		return {
 			'click #button-submit-login'     : 'sendLogin'       , // Аутентификация
-			'click #button-submit-registrate': 'sendRegistrate'  , // Регистрация
+			'click #button-submit-register'  : 'sendRegister'    , // Регистрация
 			'click .js-auth-check'           : 'checkAuth'       , // Проверка авторизации
       'change input[type=checkbox]'		 : 'changeAccordion' , // Событие при изменении аккордиона
 		}
 	}
 
 	get render (){
-		return () => { document.querySelectorAll(this.el)[0].innerHTML = template; }
+		return ( CheckAuthResponse ) => {
+      document.querySelectorAll(this.el)[0].innerHTML = template;
+      
+      // Получаем токен для защиты от csrf защиты
+      if( 'token' in CheckAuthResponse ){
+        this.token = CheckAuthResponse.token;
+      } else {
+        console.error( 'Не переданы параметры csrf защиты' , CheckAuthResponse );
+      }
+    }
 	}
 
   get checkAuth () {
     return ( e ) => {
       e.preventDefault();
-      let url           = 'http://popser.app/auth/check';
-      let checkCallback = ( data ) => {
-        console.log('Check auth answer' , data);
-      }
 
-      $.ajax({
-        url: url
-      })
-      .done( ( data ) => {
-        checkCallback();
-      })
-      .fail( () => {
-        console.log("error");
-      })
-      .always( () => {
-        console.log("complete");
-      });
-      
+      checkAuth(
+        ( response ) => { console.log('Checkauth SUCCESS!'); } ,
+        ( response ) => { console.log('Checkauth FAILED'); }
+      );
 
     }
   }
@@ -71,21 +68,31 @@ export class Auth extends Backbone.View {
    */
   get sendLogin () {
   	return ( e ) => {
+
   		let $form  = $( '#block-login' );
   		let $email = $form.find('input[name=email]');
   		let $pass  = $form.find('input[name=password]');
   		let data   = {
   			email 		: $email.val() ,
-  			password 	: $pass.val()
+  			password 	: $pass.val()  ,
+        _token    : this.token
   		}
 
-  		$.post( host + 'auth/login', data)
-  			.done( (data, textStatus, xhr) => {
-  				console.log('data' , data , 'textStatus:' , textStatus , 'xhr:' , xhr );
-  			})
-			.fail( ( data ) => {
-				console.error('Error send login' , data);
-			} );
+      $.ajax({
+        url   : host + routes.login,
+        data  : data ,
+        type  : 'POST' ,
+      })
+      .done(function( response ) {
+        console.log("success" , response );
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        //console.log("complete");
+      });
+
   	}
   }
 
@@ -93,9 +100,9 @@ export class Auth extends Backbone.View {
    * Срабатывает при отправке формы регистрации
    * @return {void} регистрирует пользователя
    */
-  get sendRegistrate () {
+  get sendRegister () {
   	return ( e ) => {
-  		let $form  = $( '#block-registrate' );
+  		let $form  = $( '#block-register' );
   		let $email = $form.find('input[name=email]');
   		let $pass  = $form.find('input[name=password]');
   		let $name  = $form.find('input[name=name]');
@@ -105,7 +112,7 @@ export class Auth extends Backbone.View {
   			name 	   : $name.val()
   		}
 
-  		$.post( host + 'auth/registrate', data)	// Отрпавляем форму регистрации на сервер
+  		$.post( host + 'auth/register', data)	// Отрпавляем форму регистрации на сервер
   			.done( (data, textStatus, xhr) => {	// Запрос регистрации выполнен успешно
   				if( 'result' in data ) {
   					switch( data.result ){

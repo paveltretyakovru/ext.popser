@@ -7,16 +7,29 @@ import { checkAuth }		from '../libs/functions/checkauth';
 import { Auth as authview }	from '../views/auth';
 
 class Desktop extends Backbone.Router {
+	
+	// Маршруты приложения
+	get routes() {
+		return {
+			''	: 'home'
+		}
+	}
+	
 	constructor() {
 		super();
 
-		let AuthView = new authview();
-
+		// Проверяем, авторизован ли пользователь
 		checkAuth(
-			// Пользователь авторизован
-			() => { this.routes = { ''	: 'home' } } ,
-			// Пользователь не авторизован
-			() => { AuthView.render(); }
+			// Если авторизован - инициализируем маршрутизатор
+			( response ) => {
+				
+			} ,
+			
+			// Иначе рендерим вьюху аутентификации
+			( response ) => {
+				let AuthView = new authview();
+				AuthView.render( response );
+			}
 		);
 
 		super();
