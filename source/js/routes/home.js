@@ -1,8 +1,12 @@
 import Backbone from 'backbone';
 
-class Home {
+class Home extends Backbone.Router {
 	constructor() {
+		super();
+
 		console.log('Home controller');
+
+		super();
 	}
 }
 

@@ -6,7 +6,7 @@ import $ from 'jquery';
  * При подключении, функция автоматически выполняется
  */
 
-export var adder = (function(){
+export var FrameworksExtender = (function(){
 
 	/**
 	 * Jquery по умолчанию не хочет отправлять ajax с ajax заголовками!

@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-import { host } from '../constants';
+import { host } from '../../config';
 
 export function getCookie ( name , callback ){
 	let url		= host;

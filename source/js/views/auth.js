@@ -1,18 +1,19 @@
 'use strict';
 
-import $ 			       from 'jquery';
-import Backbone 	   from 'backbone';
-import template 	   from '../../hbs/auth.hbs';
-import { host , routes } 	   from '../libs/constants';
-import { checkAuth } from '../libs/functions/checkauth';
+import $ 			           from 'jquery';
+import Backbone 	       from 'backbone';
+import template 	       from '../../hbs/auth.hbs';
+import { host , routes } from '../config';
+import checkAuth         from '../modules/user/check-auth';
 
-export class Auth extends Backbone.View {
-	constructor() {
+class Auth extends Backbone.View {
+	constructor( response ) {
 		super();
 
 		this.$html 	= $( 'html' );
 		this.$body 	= $( 'body' );
-		//this.$el 	= $( '#wrapper' );
+		
+    this.render( response );
 	}
 
 	get el() { return '#wrapper' }
@@ -133,3 +134,5 @@ export class Auth extends Backbone.View {
   	}
   }
 }
+
+export default Auth;

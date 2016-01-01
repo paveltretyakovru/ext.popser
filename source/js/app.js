@@ -1,23 +1,25 @@
-'user strict';
+'user strict'
 
 import $ 		from 'jquery';
 import Backbone from 'backbone';
-import Desktop 	from './controllers/desktop';
 
-import adder 	from './libs/adder';
+import FrameworksExtender 	from './modules/frameworks-extender';
+import InitChromeSettings 	from './modules/chrome/init-settings';
+import checkAuth 			from './modules/user/check-auth';
+import initRoutes 			from './routes/init-routes';
+import Auth 				from './views/auth';
 
-class Application {
-  constructor() {
+window.app = {};
+
+// Проверка, авторизован ли пользователь
+checkAuth(
 	
-	chrome.fontSettings.setFont({
-		genericFamily: 'sansserif', script: 'Cyrl', fontId: 'MS PGothic'
-	});
+	( response ) => {
+		initRoutes();
+	} ,
 
-    this.controller = new Desktop();
+	( response ) => {
+		app.Auth = new Auth( response );
+	}
 
-    Backbone.history.start();
-  }
-
-}
-
-window.app = new Application();
+);

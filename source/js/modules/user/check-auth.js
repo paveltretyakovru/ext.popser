@@ -1,10 +1,10 @@
 'use strict';
 
-import $ 				 from 'jquery';
-import { host , routes } from '../../libs/constants';
-import { getCookie }from '../../libs/functions/getcookie';
+import $ 				 	from 'jquery';
+import { host , routes } 	from '../../config';
+import { getCookie }		from '../chrome/get-cookie';
 
-export function checkAuth( success , unsuccess ) {
+function checkAuth ( success , unsuccess ) {
 
 	$.get( host + routes.checkauth)
 
@@ -29,3 +29,5 @@ export function checkAuth( success , unsuccess ) {
 		} );
 
 }
+
+export default checkAuth;

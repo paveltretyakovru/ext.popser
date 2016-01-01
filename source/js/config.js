@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 export const __FUNCTIONS = 'modules/functions/';
 export const host		 = 'http://back.popser.app/';
