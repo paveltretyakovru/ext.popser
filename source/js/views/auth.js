@@ -5,6 +5,7 @@ import Backbone 	       from 'backbone';
 import template 	       from '../../hbs/auth.hbs';
 import { host , routes } from '../config';
 import checkAuth         from '../modules/user/check-auth';
+import Message           from '../modules/message';
 
 class Auth extends Backbone.View {
 	constructor( response ) {
@@ -87,10 +88,11 @@ class Auth extends Backbone.View {
       .done(function( response ) {
         console.log("success" , response );
       })
-      .fail(function() {
-        console.log("error");
+      .fail(function( response ) {
+          window.res = response;
+          Message( response );
       })
-      .always(function() {
+      .always(function( response ) {
         //console.log("complete");
       });
 
@@ -109,8 +111,9 @@ class Auth extends Backbone.View {
   		let $name  = $form.find('input[name=name]');
   		let data   = {
   			email 	 : $email.val() 	,
-  			password : $pass.val() 	,
-  			name 	   : $name.val()
+  			password : $pass.val() 	  ,
+  			name 	   : $name.val()    ,
+        _token   : this.toke
   		}
 
   		$.post( host + 'auth/register', data)	// Отрпавляем форму регистрации на сервер

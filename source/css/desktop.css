@@ -6,7 +6,10 @@ footer , header { text-align: center }
 input ,button	{ width: 100%; margin-bottom: 5px; }
 /*button 	{ background-color: #FB7D8C; color: #fff; border-style: solid; }*/
 
-#wrapper 	{ width: 250px; padding: 16px; }
+/* MESSAGES */
+/*.has-error{ border: 1px; }*/
+
+#wrapper 	{ width: 350px; padding: 16px; }
 .hello-image{ text-align: center }
 
 .transition, form, ul li i:before, ul li i:after { transition: all 0.25s ease-in-out; }
