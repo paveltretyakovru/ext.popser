@@ -8,13 +8,17 @@ import checkAuth         from '../modules/user/check-auth';
 import Message           from '../modules/message';
 
 class Auth extends Backbone.View {
-	constructor( response ) {
+	constructor( options ) {
 		super();
 
-		this.$html 	= $( 'html' );
-		this.$body 	= $( 'body' );
+		this.$html 	  = $( 'html' );
+		this.$body 	  = $( 'body' );
+    this.response = {};
+    this.app      = {};
 		
-    this.render( response );
+    if( 'app' in options ){ this.app = options.app; }
+
+    this.render();
 	}
 
 	get el() { return '#wrapper' }
@@ -28,18 +32,16 @@ class Auth extends Backbone.View {
 		}
 	}
 
-	get render (){
-		return ( CheckAuthResponse ) => {
-      document.querySelectorAll(this.el)[0].innerHTML = template;
-      
-      // Получаем токен для защиты от csrf защиты
-      if( 'token' in CheckAuthResponse ){
-        this.token = CheckAuthResponse.token;
-      } else {
-        console.error( 'Не переданы параметры csrf защиты' , CheckAuthResponse );
-      }
+	get render (){ return () => {
+    document.querySelectorAll(this.el)[0].innerHTML = template;
+    
+    // Получаем токен для защиты от csrf защиты
+    if( 'token' in this.app ){
+      this.token = this.app.token;
+    } else {
+      console.error( 'Не переданы параметры csrf защиты' , this.response );
     }
-	}
+  };}
 
   get checkAuth () {
     return ( e ) => {
@@ -87,6 +89,7 @@ class Auth extends Backbone.View {
       })
       .done(function( response ) {
         console.log("success" , response );
+        app.Router.navigate( 'home' , true );
       })
       .fail(function( response ) {
           window.res = response;
@@ -113,26 +116,36 @@ class Auth extends Backbone.View {
   			email 	 : $email.val() 	,
   			password : $pass.val() 	  ,
   			name 	   : $name.val()    ,
-        _token   : this.toke
+        _token   : this.token
   		}
 
   		$.post( host + 'auth/register', data)	// Отрпавляем форму регистрации на сервер
   			.done( (data, textStatus, xhr) => {	// Запрос регистрации выполнен успешно
   				if( 'result' in data ) {
   					switch( data.result ){
-  						case 'success'	:
+  						
+              case 'success'	:
   							console.info( 'Регистрация прошла успешно' );
-  						case 'isset'	:
+                app.Router.navigate( 'home' , true );
+              break;
+              
+              case 'isset'  :
   							console.error( 'Такой пользователь существует' );
-  						case 'error'	:
+  						break;
+              
+              case 'error'	:
   							console.error( 'Произошла ошибка при регистрации' );
+              break;            
+
               case 'dailed' :
                 console.error( 'Неправильно заполнена форма регистрации' );
+              break;
   					}
   				}
   			})
-			.fail( ( data ) => {	// Ошибка во время выолнения запроса регистрации
-				console.error( 'Произошла ошибка при регистрации' , data );
+			.fail( ( response ) => {	// Ошибка во время выолнения запроса регистрации
+				console.error( 'Произошла ошибка при регистрации' , response );
+        Message( response );
 			} );
   	}
   }

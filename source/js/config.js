@@ -5,5 +5,6 @@ export const host		 = 'http://back.popser.app/';
 export const routes 	 = {
 	checkauth 	: 'auth/check' 		,
 	register 	: 'auth/register' 	,
-	login 		: 'auth/login'
+	login 		: 'auth/login'		,
+	logout		: 'auth/logout'
 };
