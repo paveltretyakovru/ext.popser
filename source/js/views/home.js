@@ -6,7 +6,7 @@ import logout 	from '../modules/user/logout';
 
 class Home extends Backbone.View {
 	get el()		{ return '#wrapper' }
-	get template()	{ return Template; }
+	get template()	{ return this.app.compile( Template , { test : "Test:)" } ); }
 	
 	get events(){return {
 		'click .js-link-logout' : 'userLogout' , // Выход из приложения

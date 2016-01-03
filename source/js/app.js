@@ -8,8 +8,10 @@ import InitChromeSettings 	from './modules/chrome/init-settings';
 import checkAuth 			from './modules/user/check-auth';
 import Router 				from './router';
 import AuthView				from './views/auth';
+import compile				from './modules/compile';
 
-window.app = {};
+window.app 	= {};
+app.compile = compile;
 
 function historyStart( response ){
 	app.token 	= ( 'token' in response ) ? response.token : '';
