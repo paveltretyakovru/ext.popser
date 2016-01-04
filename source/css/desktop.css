@@ -1,15 +1,13 @@
 img 	{ margin: auto; }
 html 	{ background-color: #fefffa; font-family: "Titillium Web", sans-serif; color: rgba(48, 69, 92, 0.8); }
-h1, h2 	{ color: #ff6873; }
-h1 		{ text-transform: uppercase; font-size: 24px; letter-spacing: 3px; font-weight: 100; }
 footer , header { text-align: center }
-input ,button	{ width: 100%; margin-bottom: 5px; }
-/*button 	{ background-color: #FB7D8C; color: #fff; border-style: solid; }*/
+/*input ,button { width: 100%; margin-bottom: 5px; }*/
 
-/* MESSAGES */
-/*.has-error{ border: 1px; }*/
+h1, h2 , h3 	{ color: #ff6873; }
+h1 		{ text-transform: uppercase; font-size: 24px; letter-spacing: 3px; font-weight: 100; }
+h3 { font-size: 18px }
 
-#wrapper 	{ width: 350px; padding: 16px; }
+#wrapper 	{ width: 350px; padding: 0px 16px; }
 .hello-image{ text-align: center }
 
 .transition, form, ul li i:before, ul li i:after { transition: all 0.25s ease-in-out; }
@@ -24,6 +22,16 @@ input ,button	{ width: 100%; margin-bottom: 5px; }
   	-ms-user-select: none;
   	user-select: none;
 }
+
+/* HOME PAGE */
+.home-page form {
+  display: flex;
+  align-items: center;
+}
+
+  .home-page form input{
+    margin-right: 15px;
+  }
 
 
 /* Accordion code */

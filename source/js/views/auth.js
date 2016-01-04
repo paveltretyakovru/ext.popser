@@ -6,6 +6,7 @@ import template 	       from '../../hbs/auth.hbs';
 import { host , routes } from '../config';
 import checkAuth         from '../modules/user/check-auth';
 import Message           from '../modules/message';
+import User              from '../models/User';
 
 class Auth extends Backbone.View {
 	constructor( options ) {
@@ -102,6 +103,12 @@ class Auth extends Backbone.View {
   	}
   }
 
+  initUserModel( options ){
+    if( 'user' in options ){
+      this.app.User = new User( options.user );
+    }
+  }
+
   /**
    * Срабатывает при отправке формы регистрации
    * @return {void} регистрирует пользователя
@@ -126,6 +133,8 @@ class Auth extends Backbone.View {
   						
               case 'success'	:
   							console.info( 'Регистрация прошла успешно' );
+
+                this.initUserModel( data );
                 app.Router.navigate( 'home' , true );
               break;
               
