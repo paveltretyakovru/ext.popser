@@ -17,7 +17,7 @@ class Auth extends Backbone.View {
     this.response = {};
     this.app      = {};
 		
-    if( 'app' in options ){ this.app = options.app; }
+    if( 'app' in options ){ this.app = options.app; }else{ console.error('Не передан объект приложения'); }
 
     this.render();
 	}
@@ -74,6 +74,7 @@ class Auth extends Backbone.View {
   get sendLogin () {
   	return ( e ) => {
 
+      let _this  = this;
   		let $form  = $( '#block-login' );
   		let $email = $form.find('input[name=email]');
   		let $pass  = $form.find('input[name=password]');
@@ -90,6 +91,8 @@ class Auth extends Backbone.View {
       })
       .done(function( response ) {
         console.log("success" , response );
+
+        _this.initUserModel( response );
         app.Router.navigate( 'home' , true );
       })
       .fail(function( response ) {
@@ -106,6 +109,8 @@ class Auth extends Backbone.View {
   initUserModel( options ){
     if( 'user' in options ){
       this.app.User = new User( options.user );
+    } else { 
+      console.error('Не передан объект с пользователем после входа options:',options,'app:',app);
     }
   }
 

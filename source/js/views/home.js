@@ -4,6 +4,7 @@ import Backbone 	from 'backbone';
 import Template 	from '../../hbs/home.hbs';
 import logout 		from '../modules/user/logout';
 import Model		from '../models/Home';
+import bodySize 	from '../modules/bodysize';
 
 class Home extends Backbone.View {
 	get el()		{ return '#wrapper' }
@@ -24,6 +25,7 @@ class Home extends Backbone.View {
 
 	get render(){ return () => {
 		document.querySelectorAll(this.el)[0].innerHTML = this.template;
+		bodySize();
 	}}
 
 	get userLogout(){return ( e ) => {

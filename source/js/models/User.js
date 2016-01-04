@@ -10,6 +10,4 @@ class User extends Backbone.Model {
 	get urlRoot() { return host + 'users' }
 }
 
-window.user = new User();
-
 export default User;

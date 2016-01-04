@@ -1,34 +1,36 @@
-<div class="message"></div>
+<div class="auth-page">
+	<div class="message"></div>
 
-<div class="accordion">
-	<ul>
-		<li>
-			<input type="checkbox" checked="true" />
-			<i></i>
-			<h2>Вход</h2>
-			<p id="block-login">
-				<input class="form-control" name="email" 		type="email" 	placeholder="email" />
-				<input class="form-control" name="password" 	type="password" placeholder="пароль" />
-				<button class="btn btn-default" id="button-submit-login">Войти</button>
-			</p>
-		</li>
+	<div class="accordion">
+		<ul>
+			<li>
+				<input type="checkbox" checked="true" />
+				<i></i>
+				<h2>Вход</h2>
+				<p id="block-login">
+					<input class="form-control" name="email" 		type="email" 	placeholder="email" />
+					<input class="form-control" name="password" 	type="password" placeholder="пароль" />
+					<button class="btn btn-primary" id="button-submit-login">Войти</button>
+				</p>
+			</li>
 
-		<li>
-			<input type="checkbox" checked="true" />
-			<i></i>
-			<h2>Регистрация</h2>
-			<p id="block-register">
-				<input class="form-control" name="name" 		type="text" placeholder="имя" 		/>
-				<input class="form-control" name="email" 		type="text" placeholder="email" 	/>
-				<input class="form-control" name="password" 	type="text" placeholder="пароль" 	/>
-				<button class="btn btn-default" id="button-submit-register">Зарегестрироваться</button>
-			</p>
-		</li>
-	</ul>
-</div>
+			<li>
+				<input type="checkbox" checked="true" />
+				<i></i>
+				<h2>Регистрация</h2>
+				<p id="block-register">
+					<input class="form-control" name="name" 		type="text" placeholder="имя" 		/>
+					<input class="form-control" name="email" 		type="text" placeholder="email" 	/>
+					<input class="form-control" name="password" 	type="text" placeholder="пароль" 	/>
+					<button class="btn btn-default" id="button-submit-register">Зарегестрироваться</button>
+				</p>
+			</li>
+		</ul>
+	</div>
 
-<div class="hello-image">
-	<img src="images/cat_popcorn.png" style="width:50%">
-</div>
+	<div class="hello-image">
+		<img src="images/cat_popcorn.png" style="width:50%">
+	</div>
 
-{ <a href="/auth/check" class="js-auth-check">Проверить авторизацию</a> }
+	{ <a href="/auth/check" class="js-auth-check">Проверить авторизацию</a> }
+</div> <!-- .auth-page -->

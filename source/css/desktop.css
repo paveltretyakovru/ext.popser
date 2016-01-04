@@ -23,6 +23,9 @@ h3 { font-size: 18px }
   	user-select: none;
 }
 
+/* AUTH PAGE */
+.auth-page input , .auth-page button { width: 100%; margin-bottom: 10px; }
+
 /* HOME PAGE */
 .home-page form {
   display: flex;
