@@ -1,10 +1,10 @@
 <div class="home-page">
-	<div class="js-current-serial"></div>
+	<span class="palette-peter-river current-serial">{{ user.current }}</span>
 	<div class="js-serials-list"></div>
 
 	<form>
-		<input type="email" class="form-control" placeholder="Добавить сериал">
-		<button type="submit" class="btn btn-primary">Добавить</button>
+		<input type="text"  class="form-control" placeholder="Добавить сериал">
+		<input type="submit" value="Добавить" class="btn btn-primary" id="button-submit-add-new-serial">
 	</form>
 
 	<div>
