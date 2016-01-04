@@ -33,8 +33,8 @@ h3 { font-size: 18px }
 }
 
   .home-page input{
-    height: 34px;
-    width: 100px;
+    /*height: 34px;*/
+    /*width: 100px;*/
   }
 
   .home-page header{
@@ -80,7 +80,8 @@ h3 { font-size: 18px }
     cursor: pointer;
   }
 
-  .js-serials-list{
+  .js-serials-list {
+
   }
 
   .info-control{
