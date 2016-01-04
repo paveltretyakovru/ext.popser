@@ -9,8 +9,9 @@ var tmpdata = [
 	{ id : 1 , title : 'First title'  } ,
 	{ id : 2 , title : 'Second title' } ,
 	{ id : 3 , title : 'Thirds title' } ,
-	{ id : 4 , title : 'Four title' } ,
-	{ id : 5 , title : 'Five title' }
+	{ id : 4 , title : 'Four title' } 	,
+	{ id : 5 , title : 'Five title' }	,
+	{ id : 6 , title : 'Ходячие мертвецы' }
 ];
 
 class Serials extends Backbone.View{

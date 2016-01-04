@@ -10,7 +10,7 @@ class User extends Backbone.Model {
 	get urlRoot() { return host + 'users' }
 
 	get defaults(){return {
-		current : "Шерлок"
+		current : "Ходячие мертвецы"
 	};}
 }
 

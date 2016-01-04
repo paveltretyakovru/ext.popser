@@ -4,7 +4,7 @@ footer , header { text-align: center }
 /*input ,button { width: 100%; margin-bottom: 5px; }*/
 
 h1, h2 , h3 	{ color: #ff6873; }
-h1 		{ text-transform: uppercase; font-size: 24px; letter-spacing: 3px; font-weight: 100; margin: 5px 0px; }
+h1 		{ text-transform: uppercase; font-size: 24px; letter-spacing: 3px; font-weight: 100; }
 h3 { font-size: 18px }
 
 #wrapper 	{ width: 350px; padding: 0px 16px; }
@@ -32,9 +32,36 @@ h3 { font-size: 18px }
   align-items: center;
 }
 
-  .home-page form input{
-    margin-right: 15px;
+  .home-page input{
     height: 34px;
+    width: 100px;
+  }
+
+  .home-page header{
+    margin-top: 15px;
+  }
+
+  .home-page footer{
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 15px;
+  }
+
+  .home-page footer img{
+    height: 45px;
+    margin:0px;
+  }
+
+  .home-page footer h1{
+    margin: 0px 10px;
+    font-size: 20px;
+    padding: 0px;
+  }
+
+  .home-page footer a{
+    margin-right: 5px;
   }
 
   .btn{
@@ -51,6 +78,19 @@ h3 { font-size: 18px }
     text-transform: uppercase;
     padding: 3px;
     cursor: pointer;
+  }
+
+  .js-serials-list{
+  }
+
+  .info-control{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+  }
+
+  .info-control-icon{
+    margin: 0px 5px;
   }
 
 

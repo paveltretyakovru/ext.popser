@@ -1,13 +1,45 @@
-<div class="home-page">
-	<span class="palette-peter-river current-serial">{{ user.current }}</span>
+<section class="home-page">
+	
+	<header>
+		<span class="palette-emerald current-serial">{{ user.current }}</span>
+	</header>
+
+	<p class="info-control">	
+
+		<a href="#"><span class="fui-triangle-up-small"></span></a>
+		Сезон
+		<a href="#"><span class="fui-triangle-down-small"></span></a>
+
+		<a href="#"><span class="fui-triangle-up-small"></span></a>
+		Серия
+		<a href="#"><span class="fui-triangle-down-small"></span></a>
+		
+		<a href="#" title="Ссылка" class="info-control-icon" >
+			<span class="fui-link"></span>
+		</a>
+		
+		<a class="info-control-icon">
+			<span class="fui-gear"></span>
+		</a>
+		
+		<a href="#" title="Дополнительная информация" class="info-control-icon">
+			<span class="fui-info-circle"></span>
+		</a>
+		
+		<a href="#" title="Удалить" class="info-control-icon">
+			<span class="fui-trash"></span>	
+		</a>
+
+
+	</p>
+
 	<div class="js-serials-list"></div>
 
-	<form>
-		<input type="text"  class="form-control" placeholder="Добавить сериал">
-		<input type="submit" value="Добавить" class="btn btn-primary" id="button-submit-add-new-serial">
-	</form>
+	<footer>
+		<img src="images/cat-walk-icon.png">
+		<h1>Popser!</h1>
+		<a href="#"><span class="fui-user"></span></a>
+		<a href="#" class="js-link-logout" title="Выход"><span class="fui-exit"></span></a>
+	</footer>
 
-	<div>
-		<a href="#" class="js-link-logout">Выход</a>
-	</div>
-</div>
+</section>
