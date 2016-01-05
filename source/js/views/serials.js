@@ -8,12 +8,12 @@ import Collection 	from '../collections/Serials';
 import SerialsModel from '../models/Serials';
 
 var tmpdata = [
-	{ id : 1 , title : 'First title' , current : false  } ,
-	{ id : 2 , title : 'Second title', current : true } ,
-	{ id : 3 , title : 'Thirds title', current : false } ,
-	{ id : 4 , title : 'Four title', current : false } 	,
-	{ id : 5 , title : 'Five title', current : false }	,
-	{ id : 6 , title : 'Ходячие мертвецы', current : false }
+	{ id : 1 , title : 'First title' , current : false , season : 0 , series : 0 } ,
+	{ id : 2 , title : 'Second title', current : false , season : 0 , series : 0 } ,
+	{ id : 3 , title : 'Thirds title', current : false , season : 0 , series : 0 } ,
+	{ id : 4 , title : 'Four title', current : false , season : 0 , series : 0 } 	,
+	{ id : 5 , title : 'Five title', current : false , season : 0 , series : 0 }	,
+	{ id : 6 , title : 'Ходячие мертвецы', current : false , season : 0 , series : 0 }
 ];
 
 class Serials extends Backbone.View{
@@ -50,7 +50,9 @@ class Serials extends Backbone.View{
 	 */
 	clearCurrent(){
 		let model = this.SerialsCollection.findWhere({ current : true });
-		model.set('current' , false);
+		if( model ){
+			model.set('current' , false);
+		}
 	}
 
 	selectSerial( event ){

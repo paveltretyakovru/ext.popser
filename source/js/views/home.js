@@ -27,6 +27,7 @@ class Home extends Backbone.View {
 		
 		// Инициализируем представления страницы
 		this.app.SerialsListView = new SerialsView({ app : this.app });
+		this.app.SerialView 	 = new SerialView({ app : this.app });
 		
 		// Рендерим необходимые представления страницы
 		this.renderSerialsList();
@@ -64,6 +65,7 @@ class Home extends Backbone.View {
 	 */
 	serialSelected( options ){
 		console.log('Serial selected :) ' , options.model.toJSON() );
+		this.app.SerialView.render({ model : options.model });
 	}
 }
 
