@@ -13,7 +13,6 @@ class Home extends Backbone.View {
 	
 	get events(){return {
 		'click .js-link-logout' 				: 'userLogout' 		, // Выход из приложения
-		'click #button-submit-add-new-serial'	: 'submitAddSerial'	, // Добавление нового сериала
 	};}
 
 	constructor( options ){
@@ -32,12 +31,6 @@ class Home extends Backbone.View {
 		this.app.Serials.render();
 
 		bodySize();
-	}}
-
-	get submitAddSerial(){return ( e ) =>{
-		e.preventDefault();
-
-		console.log('Хеллоооо');
 	}}
 
 	get userLogout(){return ( e ) => {

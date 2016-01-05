@@ -1,8 +1,15 @@
 Мои сериалы: &nbsp;
+
 {{#each collection}}
-	<span class="element-serials-list palette-alizarin">{{ title }}</span>
+	{{#if current}}
+		<span class="element-serials-list palette-alizarin js-serials-element active" data-id="{{id}}">{{ title }}</span>
+	{{else}}
+		<span class="element-serials-list palette-alizarin js-serials-element" data-id="{{id}}">{{ title }}</span>
+	{{/if}}
+
+	<!-- <span class="element-serials-list palette-alizarin js-serials-element" data-id="{{id}}">{{ title }}</span> -->
 {{/each}}
 
 <a href="#">
-	<span class="fui-plus" title="Добавить сериал"></span>
+	<span class="fui-plus js-add-new-serial" title="Добавить сериал"></span>
 </a>

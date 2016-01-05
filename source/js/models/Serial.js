@@ -3,13 +3,14 @@
 import Backbone from 'backbone';
 
 class Serial extends Backbone.Model{
-	constructor(){
-		super();
+	constructor( options ){
+		super( options );
 	}
 
 	get defaults(){
 		return {
-			title : ''
+			title 	: '' ,
+			current : false
 		}
 	}
 }
