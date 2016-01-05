@@ -23,8 +23,14 @@ class Serial extends Backbone.View{
 
 	render( options ){
 
+
 		this.$el.hide( 300 );
 		this.$el.html( this.template( options.model.toJSON() ) );
+		
+		if( options.created ){
+			$('.js-serial-settings').css('display' , 'block');
+		}
+		
 		this.$el.show( 300 );
 
 		return this;

@@ -9,7 +9,7 @@ class Serial extends Backbone.Model{
 
 	get defaults(){
 		return {
-			title 	: '' ,
+			title 	: 'Сериал без названия' ,
 			current : false
 		}
 	}

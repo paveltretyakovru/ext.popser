@@ -6,6 +6,7 @@ import Template 	from '../../hbs/serials.hbs';
 import template 	from '../modules/template';
 import Collection 	from '../collections/Serials';
 import SerialsModel from '../models/Serials';
+import SerialModel 	from '../models/Serial';
 
 var tmpdata = [
 	{ id : 1 , title : 'First title' , current : false , season : 0 , series : 0 } ,
@@ -22,7 +23,7 @@ class Serials extends Backbone.View{
 			el 			: '.js-serials-list' ,
 			events 		: {
 				'click .js-add-new-serial'	: 'createNewSerial' ,
-				'click .js-serials-element'	: 'selectSerial'
+				'click .js-serials-element'	: 'clickSelectSerial'
 			} ,
 			model 		: new SerialsModel() ,
 		});
@@ -55,7 +56,15 @@ class Serials extends Backbone.View{
 		}
 	}
 
-	selectSerial( event ){
+	selectSerial( model ){
+		this.clearCurrent();
+		model.set( 'current' , true );
+
+		this.trigger('serialSelected' , { model : model , created : true } );
+		this.render();
+	}
+
+	clickSelectSerial( event ){
 		this.clearCurrent();
 
 		let index 	= $( event.currentTarget ).attr('data-index'); 
@@ -69,10 +78,11 @@ class Serials extends Backbone.View{
 
 	addModel( model , collection , options ){
 		this.render();
+		this.selectSerial( model );
 	}
 
 	createNewSerial( event ){
-		this.SerialsCollection.add( { title : "Сериал без названия" } );
+		this.SerialsCollection.add({});
 	}
 
 }

@@ -23,6 +23,7 @@
     "backbone": "^1.2.3",
     "browserify": "^12.0.1",
     "gulp": "^3.9.0",
+    "gulp-notify": "^2.2.0",
     "gulp-ruby-haml": "0.0.6",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
