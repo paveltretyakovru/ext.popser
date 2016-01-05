@@ -19,11 +19,16 @@ class Home extends Backbone.View {
 		});
 
 		// Init vars
-		this.app 		= options.app;
-		this.template 	= template( Template );
+		this.app 				= options.app;
+		this.template 			= template( Template );
 
 		// Draw page
 		this.render();
+		
+		// Инициализируем представления страницы
+		this.app.SerialsListView = new SerialsView({ app : this.app });
+		
+		// Рендерим необходимые представления страницы
 		this.renderSerialsList();
 
 		// Update body sise
@@ -31,31 +36,32 @@ class Home extends Backbone.View {
 
 		// Set listeners
 		// Событие отрабатывает, когда в представлении списка сриалов выбирают сериал
-		this.listenTo( this.app.Serials , 'serialSelected' , this.serialSelected );
+		this.listenTo( this.app.SerialsListView , 'serialSelected' , this.serialSelected );
 	}
 
-	/**
-	 * Рендериг представления страницы
-	 */
+	/* Рендериг представления страницы */
 	render(){
-		// Render page
 		this.$el.html( this.template( this.model.toJSON() ) );
 		return this;
 	}
 
-	/**
-	 * Рендеринг представления списка своих сериалов
-	 */
+	/* Рендеринг представления списка своих сериалов */
 	renderSerialsList(){
-		this.app.Serials = new SerialsView({ app : this.app });
-		this.app.Serials.render();
+		this.app.SerialsListView.render();
 	}
 
+	/* Выход из аккаунта после клика на ссылку выход */
 	userLogout( e ){
 		e.preventDefault();
 		logout({ app : this.app });
 	}
 
+	/**
+	 * Срабатывает от прослушки представления списка сериалов
+	 * когда пользователь выбирает определенный сериал
+	 * @param  {object} options содержит параметр model -> модель редактируемого сериала
+	 * @return {void}         Отрисовывает представления для работы над выбранным сериалом
+	 */
 	serialSelected( options ){
 		console.log('Serial selected :) ' , options.model.toJSON() );
 	}
