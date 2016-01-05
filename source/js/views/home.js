@@ -4,59 +4,60 @@ import Backbone 	from 'backbone';
 import Template 	from '../../hbs/home.hbs';
 import logout 		from '../modules/user/logout';
 import Model		from '../models/Home';
-import bodySize 	from '../modules/bodysize';
+import bodySizeUpd 	from '../modules/bodysize';
 import SerialsView	from '../views/serials';
+import SerialView 	from '../views/serial';
+import template 	from '../modules/template';
 
 class Home extends Backbone.View {
-	get el()		{ return '#wrapper' }
-	get template()	{ return this.app.compile( Template , this.model.toJSON() ); }
 	
-	get events(){return {
-		'click .js-link-logout' 				: 'userLogout' 		, // Выход из приложения
-	};}
-
 	constructor( options ){
-		super();
+		super({
+			el 		: '#wrapper' ,
+			model 	: new Model() ,
+			events 	: { 'click .js-link-logout' : 'userLogout' } , // Выход из приложения
+		});
 
-		this.collectModels( options );
-		this.collectVars( options );
+		// Init vars
+		this.app 		= options.app;
+		this.template 	= template( Template );
 
+		// Draw page
 		this.render();
+		this.renderSerialsList();
+
+		// Update body sise
+		bodySizeUpd();
+
+		// Set listeners
+		// Событие отрабатывает, когда в представлении списка сриалов выбирают сериал
+		this.listenTo( this.app.Serials , 'serialSelected' , this.serialSelected );
 	}
 
-	get render(){ return () => {
-		document.querySelectorAll(this.el)[0].innerHTML = this.template;
+	/**
+	 * Рендериг представления страницы
+	 */
+	render(){
+		// Render page
+		this.$el.html( this.template( this.model.toJSON() ) );
+		return this;
+	}
 
+	/**
+	 * Рендеринг представления списка своих сериалов
+	 */
+	renderSerialsList(){
 		this.app.Serials = new SerialsView({ app : this.app });
 		this.app.Serials.render();
-
-		bodySize();
-	}}
-
-	get userLogout(){return ( e ) => {
-		e.preventDefault();
-		logout({ app : this.app });
-	};}
-
-	/**
-	 * Инициализируем переменные
-	 * @param  {object} options объект параметров переданный при инициализации представления
-	 * @return {void}   новые переменные передаются в текущий объект
-	 */
-	collectVars( options ){
-		if( 'app' in options ){
-			this.app = options.app; 
-		} else { console.error( 'Не передан параметр app в представление Home' ); }
 	}
 
-	/**
-	 * Инициализация моделей страницы
-	 * @return {void} модели сохраняются локальнов в классе
-	 */
-	collectModels(){
-		this.model = new Model();
+	userLogout( e ){
+		e.preventDefault();
+		logout({ app : this.app });
+	}
 
-		this.model.set( 'user' , app.User.toJSON() );
+	serialSelected( options ){
+		console.log('Serial selected :) ' , options.model.toJSON() );
 	}
 }
 

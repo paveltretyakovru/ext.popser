@@ -3,8 +3,9 @@
 import $ 			from 'jquery';
 import Backbone 	from 'backbone';
 import Template 	from '../../hbs/serials.hbs';
-import compile 		from '../modules/compile';
+import template 	from '../modules/template';
 import Collection 	from '../collections/Serials';
+import SerialsModel from '../models/Serials';
 
 var tmpdata = [
 	{ id : 1 , title : 'First title' , current : false  } ,
@@ -16,45 +17,52 @@ var tmpdata = [
 ];
 
 class Serials extends Backbone.View{
-	get template(){return Template;}
-
 	constructor( options ){
 		super({
 			el 			: '.js-serials-list' ,
 			events 		: {
 				'click .js-add-new-serial'	: 'createNewSerial' ,
 				'click .js-serials-element'	: 'selectSerial'
-			}
+			} ,
+			model 		: new SerialsModel() ,
 		});
 
-		this.initOptions( options );
-	}
-
-	initOptions( options ){
-		this.app 		= options.app;
-		this.collection = new Collection( tmpdata );
-
-		this.listenTo( this.collection , 'add' , this.addModel )
+		// Init vars
+		this.app 				= options.app;
+		this.template 			= template( Template );
+		this.SerialsCollection 	= new Collection( tmpdata );
+		
+		// Init listeners
+		this.listenTo( this.SerialsCollection , 'add' , this.addModel )
 	}
 
 	render(){
-
-		let data = {
-			collection : this.collection.toJSON()
-		}
-
-		console.log('RENDER' , data );
-
-		this.el.innerHTML = compile(this.template , data );
-
+		// Fill model
+		this.model.set( 'collection' , this.SerialsCollection.toJSON() );
+		
+		this.$el.html( this.template( this.model.toJSON() ) );
 		return this;
 	}
 
-	selectSerial( event ){
-		let $el = $( event.currentTarget ); 
-		$('.js-serials-element.active').removeClass('active');
+	/**
+	 * Снимает параметр current (текущий сериал) с текущей current модели
+	 * @return {void}
+	 */
+	clearCurrent(){
+		let model = this.SerialsCollection.findWhere({ current : true });
+		model.set('current' , false);
+	}
 
-		$el.addClass('active');
+	selectSerial( event ){
+		this.clearCurrent();
+
+		let index 	= $( event.currentTarget ).attr('data-index'); 
+		let model 	= this.SerialsCollection.at( index );
+
+		model.set( 'current' , true );
+		
+		this.trigger('serialSelected' , { model : model } );
+		this.render();
 	}
 
 	addModel( model , collection , options ){
@@ -62,7 +70,7 @@ class Serials extends Backbone.View{
 	}
 
 	createNewSerial( event ){
-		this.collection.add( { title : "Новый сериал" } );
+		this.SerialsCollection.add( { title : "Новый сериал" } );
 	}
 
 }

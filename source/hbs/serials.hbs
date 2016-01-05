@@ -2,9 +2,13 @@
 
 {{#each collection}}
 	{{#if current}}
-		<span class="element-serials-list palette-alizarin js-serials-element active" data-id="{{id}}">{{ title }}</span>
+		<span class="element-serials-list palette-alizarin js-serials-element active" data-index="{{@index}}">
+			{{ title }}
+		</span>
 	{{else}}
-		<span class="element-serials-list palette-alizarin js-serials-element" data-id="{{id}}">{{ title }}</span>
+		<span class="element-serials-list palette-alizarin js-serials-element" data-index="{{@index}}">
+			{{ title }}
+		</span>
 	{{/if}}
 
 	<!-- <span class="element-serials-list palette-alizarin js-serials-element" data-id="{{id}}">{{ title }}</span> -->
