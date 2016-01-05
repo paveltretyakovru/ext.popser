@@ -1,10 +1,15 @@
 <header>
-	<span class="palette-emerald current-serial">{{ title }}</span>
-	<a class="info-control-icon js-show-serial-settings">
+	<span class="serial-header-title">
+		<span class="palette-emerald current-serial">{{ title }}</span>
+	</span>
+	
+	<span></span>
+
+	<a class="info-control-icon js-show-serial-settings serial-header-icon">
 		<span class="fui-gear"></span>
 	</a>
 	
-	<a href="#" title="Удалить" class="info-control-icon">
+	<a href="#" title="Удалить" class="info-control-icon serial-header-icon">
 		<span class="fui-trash"></span>	
 	</a>
 </header>
@@ -24,6 +29,16 @@
 
 <div class="js-serial-settings">
 	<input type="text" value="{{ title }}" placeholder="Название сериала" class="form-control" />
+
+	<label class="checkbox" for="checkbox1">
+		<input class="custom-checkbox" value="" id="checkbox1" data-toggle="checkbox" type="checkbox">
+			<span class="icons">
+				<span class="icon-unchecked"></span>
+				<span class="icon-checked"></span>
+			</span>
+		Сохранить адрес текущей вкладки для этого сериала
+	</label>
+
 	<button class="btn btn-primary" >Сохранить</button>
 	<hr />
 </div>

@@ -60,7 +60,7 @@ class Serials extends Backbone.View{
 		this.clearCurrent();
 		model.set( 'current' , true );
 
-		this.trigger('serialSelected' , { model : model , created : true } );
+		this.trigger('serialSelected' , { model : model } );
 		this.render();
 	}
 

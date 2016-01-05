@@ -64,8 +64,7 @@ class Home extends Backbone.View {
 	 * @return {void}         Отрисовывает представления для работы над выбранным сериалом
 	 */
 	serialSelected( options ){
-		let created = ( 'created' in options ) ? true : false;
-		this.app.SerialView.render({ model : options.model , created : created });
+		this.app.SerialView.render({ model : options.model });
 	}
 }
 
