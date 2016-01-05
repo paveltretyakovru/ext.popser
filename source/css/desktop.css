@@ -98,6 +98,17 @@ h3 { font-size: 18px }
     background-color: #c0392b !important;
   }
 
+  .js-serial-settings{
+    display: none;
+  }
+
+    .js-serial-settings input{
+      height: 32px;
+    }
+
+    .js-serial-settings button{
+      margin-top: 10px;
+    }
 
 /* Accordion code */
 

@@ -9,18 +9,32 @@ import template 		from '../modules/template';
 class Serial extends Backbone.View{
 	constructor( options ){
 		super({
-			 el : '.js-serial'
+			 el 	: '.js-serial' ,
+			 events : {
+			 	'click .js-show-serial-settings' : 'toggleSerialSettings'
+			 }
 		});
 
 		this.app 		= options.app;
 		this.model 		= this.app.model;
 		this.template 	= template( TemplateSerial );
+		this.$settings 	= $('.js-serial-settings');
 	}
 
 	render( options ){
+
+		this.$el.hide( 300 );
 		this.$el.html( this.template( options.model.toJSON() ) );
+		this.$el.show( 300 );
 
 		return this;
+	}
+
+	toggleSerialSettings( e ){
+		e.preventDefault();
+		console.log('toggleSerialSettings');
+
+		$('.js-serial-settings').toggle(300);
 	}
 };
 

@@ -1,5 +1,12 @@
 <header>
 	<span class="palette-emerald current-serial">{{ title }}</span>
+	<a class="info-control-icon js-show-serial-settings">
+		<span class="fui-gear"></span>
+	</a>
+	
+	<a href="#" title="Удалить" class="info-control-icon">
+		<span class="fui-trash"></span>	
+	</a>
 </header>
 
 <p class="info-control">	
@@ -12,12 +19,11 @@
 	{{ series }} Серия
 	<a href="#"><span class="fui-triangle-down-small"></span></a>
 	
-	<a class="info-control-icon">
-		<span class="fui-gear"></span>
-	</a>
-	
-	<a href="#" title="Удалить" class="info-control-icon">
-		<span class="fui-trash"></span>	
-	</a>
 
 </p>
+
+<div class="js-serial-settings">
+	<input type="text" value="{{ title }}" placeholder="Название сериала" class="form-control" />
+	<button class="btn btn-primary" >Сохранить</button>
+	<hr />
+</div>
