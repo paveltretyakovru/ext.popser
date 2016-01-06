@@ -1,18 +1,6 @@
 Мои сериалы: &nbsp;
 
-{{#each collection}}
-	{{#if current}}
-		<span class="element-serials-list palette-asbestos js-serials-element active" data-index="{{@index}}">
-			{{ title }}
-		</span>
-	{{else}}
-		<span class="element-serials-list palette-asbestos js-serials-element" data-index="{{@index}}">
-			{{ title }}
-		</span>
-	{{/if}}
-
-	<!-- <span class="element-serials-list palette-alizarin js-serials-element" data-id="{{id}}">{{ title }}</span> -->
-{{/each}}
+<span class="element-serials-list palette-asbestos js-serials-element" rv-each-serial="model:collection" rv-class-active="serial:current" rv-text="serial:title" rv-data-cid="serial.cid" ></span>
 
 <a href="#">
 	<span class="fui-plus js-add-new-serial" title="Добавить сериал"></span>

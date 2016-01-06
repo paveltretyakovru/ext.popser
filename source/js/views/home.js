@@ -21,7 +21,7 @@ class Home extends Backbone.View {
 		});
 
 		// Init vars
-		this.app 				= options.app;
+		this.app = options.app;
 
 		// Draw page
 		this.render();

@@ -101,9 +101,13 @@ h3 { font-size: 18px }
     margin: 0px 5px;
   }
 
-  .js-serials-element.active{
-    background-color: #c0392b !important;
+  .js-serials-element{
+    margin-left: 3px;
   }
+
+    .js-serials-element.active{
+      background-color: #c0392b !important;
+    }
 
   .js-serial-settings{
     display: none;

@@ -2,16 +2,19 @@
 
 import $ 			from 'jquery';
 import Backbone 	from 'backbone';
+import rivets 			from 'rivets';
+import rivets_backbone	from 'rivets-backbone-adapter';
+
 import Template 	from '../../hbs/serials.hbs';
-import template 	from '../modules/template';
 import Collection 	from '../collections/Serials';
 import SerialsModel from '../models/Serials';
 import SerialModel 	from '../models/Serial';
 
+
 var tmpdata = [
 	{ id : 1 , title : 'First title' , current : false , season : 0 , series : 0 } ,
 	{ id : 2 , title : 'Second title', current : false , season : 0 , series : 0 } ,
-	{ id : 3 , title : 'Ночь живых мертвецов', current : false , season : 0 , series : 0 } ,
+	{ id : 3 , title : 'Ночь живых мертвецов', current : true , season : 0 , series : 0 } ,
 	{ id : 4 , title : 'Four title', current : false , season : 0 , series : 0 } 	,
 	{ id : 5 , title : 'Five title', current : false , season : 0 , series : 0 }	,
 	{ id : 6 , title : 'Ходячие мертвецы', current : false , season : 0 , series : 0 }
@@ -23,25 +26,22 @@ class Serials extends Backbone.View{
 			el 			: '.js-serials-list' ,
 			events 		: {
 				'click .js-add-new-serial'	: 'createNewSerial' ,
-				'click .js-serials-element'	: 'clickSelectSerial'
+				'click .js-serials-element'	: 'selectSerial'
 			} ,
 			model 		: new SerialsModel() ,
 		});
 
 		// Init vars
 		this.app 				= options.app;
-		this.template 			= template( Template );
 		this.SerialsCollection 	= new Collection( tmpdata );
-		
-		// Init listeners
-		this.listenTo( this.SerialsCollection , 'add' , this.addModel )
+
 	}
 
 	render(){
-		// Fill model
-		this.model.set( 'collection' , this.SerialsCollection.toJSON() );
+		this.$el.html( Template );
+		this.model.set( 'collection' , this.SerialsCollection );
+		this.binding = rivets.bind( this.el , { model : this.model } );
 		
-		this.$el.html( this.template( this.model.toJSON() ) );
 		return this;
 	}
 
@@ -56,33 +56,19 @@ class Serials extends Backbone.View{
 		}
 	}
 
-	selectSerial( model ){
-		this.clearCurrent();
-		model.set( 'current' , true );
-
-		this.trigger('serialSelected' , { model : model } );
-		this.render();
-	}
-
-	clickSelectSerial( event ){
+	selectSerial( event ){
 		this.clearCurrent();
 
-		let index 	= $( event.currentTarget ).attr('data-index'); 
-		let model 	= this.SerialsCollection.at( index );
+		let index 	= $( event.currentTarget ).attr('data-cid'); 
+		let model 	= this.SerialsCollection.get( index );
 
 		model.set( 'current' , true );
-		
 		this.trigger('serialSelected' , { model : model } );
-		this.render();
-	}
-
-	addModel( model , collection , options ){
-		this.render();
-		this.selectSerial( model );
+	
 	}
 
 	createNewSerial( event ){
-		this.SerialsCollection.add({});
+		this.SerialsCollection.add({ });
 	}
 
 }
