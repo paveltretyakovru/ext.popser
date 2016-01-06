@@ -23,12 +23,13 @@ class Serial extends Backbone.View{
 	}
 
 	render( options ){
+		this.model = options.model;
 
 		this.$el.hide( 300 , () => {
 			this.$el.html( TemplateSerial );
-			if( options.model.isNew() ){ $('.js-serial-settings').css('display' , 'block'); }
+			if( this.model.isNew() ){ $('.js-serial-settings').css('display' , 'block'); }
 			this.$el.show( 300 );
-			this.binding = rivets.bind( this.el , { model : options.model } );
+			this.binding = rivets.bind( this.el , { model : this.model } );
 		});
 		return this;
 	}

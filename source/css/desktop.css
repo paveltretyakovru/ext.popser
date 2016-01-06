@@ -1,7 +1,7 @@
 img 	{ margin: auto; }
 html 	{ background-color: #fefffa; font-family: "Titillium Web", sans-serif; color: rgba(48, 69, 92, 0.8); }
+body  { font-size: 14px; }
 footer , header { text-align: center }
-/*input ,button { width: 100%; margin-bottom: 5px; }*/
 
 h1, h2 , h3 	{ color: #ff6873; }
 h1 		{ text-transform: uppercase; font-size: 24px; letter-spacing: 3px; font-weight: 100; }
@@ -107,6 +107,17 @@ h3 { font-size: 18px }
 
     .js-serials-element.active{
       background-color: #c0392b !important;
+    }
+
+  .js-serial-info{
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+    .js-serial-info button{
+      /*height: 25px;*/
     }
 
   .js-serial-settings{
