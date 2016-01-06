@@ -7,7 +7,9 @@ import Model		from '../models/Home';
 import bodySizeUpd 	from '../modules/bodysize';
 import SerialsView	from '../views/serials';
 import SerialView 	from '../views/serial';
-import template 	from '../modules/template';
+
+import rivets 			from 'rivets';
+import rivets_backbone	from 'rivets-backbone-adapter';
 
 class Home extends Backbone.View {
 	
@@ -20,7 +22,6 @@ class Home extends Backbone.View {
 
 		// Init vars
 		this.app 				= options.app;
-		this.template 			= template( Template );
 
 		// Draw page
 		this.render();
@@ -42,7 +43,9 @@ class Home extends Backbone.View {
 
 	/* Рендериг представления страницы */
 	render(){
-		this.$el.html( this.template( this.model.toJSON() ) );
+		this.$el.html( Template );
+		this.binding = rivets.bind( this.el , { model : this.model } );
+
 		return this;
 	}
 

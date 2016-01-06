@@ -28,8 +28,10 @@ class Serial extends Backbone.View{
 		console.log('RIVETS' , rivets);
 
 		this.$el.hide( 300 , () => {
-			this.$el.html( this.template( options.model.toJSON() ) );
+			// this.$el.html( this.template( options.model.toJSON() ) );
 		
+			this.$el.html( TemplateSerial );
+
 			if( options.model.isNew() ){
 				$('.js-serial-settings').css('display' , 'block');
 			}
@@ -39,6 +41,10 @@ class Serial extends Backbone.View{
 			this.binding = rivets.bind( this.el , { model : options.model } );
 		});
 		return this;
+	}
+
+	remove(){
+		console.log('Remove view');
 	}
 
 	toggleSerialSettings( e ){
