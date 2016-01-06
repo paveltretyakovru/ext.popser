@@ -3,8 +3,11 @@
 import $ 				from 'jquery';
 import _ 				from 'underscore';
 import Backbone 		from 'backbone';
+import rivets 			from 'rivets';
+import rivets_backbone	from 'rivets-backbone-adapter';
 import TemplateSerial 	from '../../hbs/serial.hbs';
 import template 		from '../modules/template';
+
 
 class Serial extends Backbone.View{
 	constructor( options ){
@@ -22,6 +25,8 @@ class Serial extends Backbone.View{
 	}
 
 	render( options ){
+		console.log('RIVETS' , rivets);
+
 		this.$el.hide( 300 , () => {
 			this.$el.html( this.template( options.model.toJSON() ) );
 		
@@ -30,6 +35,8 @@ class Serial extends Backbone.View{
 			}
 
 			this.$el.show( 300 );
+
+			this.binding = rivets.bind( this.el , { model : options.model } );
 		});
 		return this;
 	}
