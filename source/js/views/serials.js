@@ -35,6 +35,8 @@ class Serials extends Backbone.View{
 		this.app 				= options.app;
 		this.SerialsCollection 	= new Collection( tmpdata );
 
+		// Init listener
+		this.listenTo( this.SerialsCollection , 'add' , this.addedModelToCollection );
 	}
 
 	render(){
@@ -69,6 +71,12 @@ class Serials extends Backbone.View{
 
 	createNewSerial( event ){
 		this.SerialsCollection.add({ });
+	}
+
+	addedModelToCollection( model , collection , options ){
+		this.clearCurrent();
+		model.set( 'current' , true );
+		this.trigger('serialSelected' , { model : model } );
 	}
 
 }
