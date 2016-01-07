@@ -1,7 +1,9 @@
 'use strict';
 
-import $ 				from 'jquery';
+import $				from 'jquery';
+import jQuery 			from 'jquery';
 import _ 				from 'underscore';
+import bootstrap 		from 'bootstrap-browserify';
 import Backbone 		from 'backbone';
 import rivets 			from 'rivets';
 import rivets_backbone	from 'rivets-backbone-adapter';

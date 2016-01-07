@@ -3,7 +3,23 @@
 		<span class="palette-emerald current-serial" rv-text="model:title" ></span>
 	</span>
 	
-	<span></span>
+	<div class="serial-header-counter">
+		<div>
+			<a href="#" class="fui-triangle-up-small"></a>
+			<strong>{ model:season }</strong>
+			<a href="#" class="fui-triangle-down-small"></a>
+		</div>
+		<span>сезон</span>
+	</div>
+
+	<div class="serial-header-counter">
+		<div>
+			<a href="#" class="fui-triangle-up-small"></a>
+			<strong>{ model:series }</strong>
+			<a href="#" class="fui-triangle-down-small"></a>
+		</div>
+		<span>серия</span>
+	</div>
 
 	<a class="info-control-icon js-show-serial-settings serial-header-icon">
 		<span class="fui-gear"></span>
@@ -14,30 +30,41 @@
 	</a>
 </header>
 
-<p class="info-control">	
-
-	<a href="#"><span class="fui-triangle-up-small"></span></a>
-	Сезон
-	<a href="#"><span class="fui-triangle-down-small"></span></a>
-
-	<a href="#"><span class="fui-triangle-up-small"></span></a>
-	Серия
-	<a href="#"><span class="fui-triangle-down-small"></span></a>
-	
-
-</p>
-
 <div class="js-serial-info">
-	<span>
-		<button class="fui-link btn btn-info" title="Указать ссылку текущей страницы"></button> &nbsp
-		<a href="#">{ model:link }</a>
-	</span>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active">
+				<a href="#serial-link-block" aria-controls="serial-link-block" role="tab" data-toggle="tab" class="fui-link"></a>
+			</li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+			
+			<div role="tabpanel" class="tab-pane active" id="serial-link-block">
+				<span>
+					<strong>Ссылка:</strong>
+					<a href="#" rv-show="model:link">{ model:link }</a>
+					<span rv-hide="model:link">Ссылка не привязана</span>
+				</span>
+
+			<span class="js-serial-info-control">
+				<a class="fui-link" href="#" title="Привязать ссылку к текущей странице"></a>
+				<a class="fui-new" href="#" title="Редактировать ссылку"></a>
+			</span>
+						
+			</div>
+		</div>
 </div>
 
 <hr />
 
 <div class="js-serial-settings">
-	<input type="text" rv-value="model:title" placeholder="Название сериала" class="form-control" />
-	<button class="btn btn-primary" >Сохранить</button>
+	<div>
+		<span>Название:</span>
+		<input type="text" rv-value="model:title" placeholder="Название сериала" class="form-control" />
+		<a class="fui-check-circle"></a>
+	</div>
+	<!-- <button class="btn btn-primary" >Сохранить</button> -->
 	<hr />
 </div>

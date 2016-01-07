@@ -38,14 +38,41 @@ h3 { font-size: 18px }
   }
 
   .home-page header{
-    margin-top: 15px;
+    margin-top: 16px;
     display: flex;
     justify-content: space-between;
+    /*align-items: center;*/
   }
 
+    .home-page .serial-header-icon{
+      font-size: 14px;
+    }
+
   .serial-header-title{
-    flex-grow: 12;
+    /*flex-grow: 12;*/
     text-align: left;
+  }
+    .current-serial{
+      color: #fff; padding: 3px; font-size: 16px; text-transform: uppercase;
+    }
+
+  .serial-header-counter{
+    line-height: 1.1;
+    margin-left: 10px;
+  }
+
+    .serial-header-counter span{
+      font-size: 12px;
+      color: #bdc3c7;
+    }
+
+    .serial-header-counter div{
+      display: flex;
+      align-items: center;
+    }
+
+  .info-control-icon{
+    margin-left: 10px;
   }
 
   .home-page footer{
@@ -75,10 +102,6 @@ h3 { font-size: 18px }
     line-height: 0.4; 
   }
 
-  .current-serial{
-    color: #fff; padding: 3px; font-size: 18px; text-transform: uppercase;
-  }
-
   .element-serials-list{
     color: #fff;
     font-size: 14px;
@@ -97,10 +120,6 @@ h3 { font-size: 18px }
     margin-top: 15px;
   }
 
-  .info-control-icon{
-    margin: 0px 5px;
-  }
-
   .js-serials-element{
     margin-left: 3px;
   }
@@ -111,25 +130,42 @@ h3 { font-size: 18px }
 
   .js-serial-info{
     font-size: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
     .js-serial-info button{
       /*height: 25px;*/
     }
 
+    .js-serial-info-control a{
+      margin-left: 10px;
+      font-size: 16px;
+    }
+
   .js-serial-settings{
     display: none;
   }
 
+    .js-serial-settings div{
+      display: flex;
+      align-items: center;
+    }
+
+    .js-serial-settings div span{
+      margin-right: 10px;
+    }
+
     .js-serial-settings input{
-      height: 32px;
+      height: 24px;
+      width: 60%
     }
 
     .js-serial-settings button{
       margin-top: 10px;
+    }
+
+    .js-serial-settings a{
+      font-size: 16px;
+      margin-left: 15px;
     }
 
 /* Accordion code */

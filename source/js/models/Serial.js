@@ -11,7 +11,9 @@ class Serial extends Backbone.Model{
 		return {
 			title 	: 'Сериал без названия' ,
 			current : false ,
-			link 	: 'Ссылка не указана'
+			link 	: '' ,
+			season 	: 0 ,
+			series 	: 0
 		}
 	}
 }
