@@ -70,6 +70,15 @@ h3 { font-size: 18px }
       padding: 0px 5px;
     }
 
+    #page-home #panel-serial-delete div:first-child{
+      display     : flex;
+      align-items : center;
+    }
+
+    #page-home #panel-serial-delete a{
+      margin : 0px 10px;
+    }
+
   #page-home #serials span{
     text-transform  : uppercase;
     background-color: #bdc3c7;
