@@ -75,6 +75,7 @@ h3 { font-size: 18px }
       align-items : center;
     }
 
+    #page-home #panel-serial-delete{ text-align: center; }
     #page-home #panel-serial-delete a{
       margin : 0px 10px;
     }
