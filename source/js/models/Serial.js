@@ -4,6 +4,8 @@ import Backbone from 'backbone';
 
 class Serial extends Backbone.Model{
 	constructor( options ){
+
+		options['_token'] = app.token;
 		super( options );
 	}
 
@@ -15,6 +17,10 @@ class Serial extends Backbone.Model{
 			season 	: 0 ,
 			series 	: 0
 		}
+	}
+
+	get url(){
+		return 'http://back.popser.app/user/serial'
 	}
 }
 

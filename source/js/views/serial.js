@@ -17,7 +17,8 @@ class Serial extends Backbone.View{
 		super({
 			 el 	: '#serial' ,
 			 events : {
-			 	'click .js-show-serial-settings' : 'toggleSerialSettings'
+			 	'click .js-show-serial-settings' : 'toggleSerialSettings' ,
+			 	'click #button-save-serial-title': 'saveSerial'
 			 }
 		});
 
@@ -41,6 +42,11 @@ class Serial extends Backbone.View{
 	toggleSerialSettings( e ){
 		e.preventDefault();
 		$('.js-serial-settings').toggle(300);
+	}
+
+	saveSerial( e ){
+		//console.log( 'Save serial event' , this.model.toJSON() );
+		this.model.save();
 	}
 };
 

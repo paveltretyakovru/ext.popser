@@ -7,7 +7,7 @@ h1, h2 , h3 	{ color: #ff6873; }
 h1 		{ text-transform: uppercase; font-size: 24px; letter-spacing: 3px; font-weight: 100; }
 h3 { font-size: 18px }
 
-#wrapper 	{ width: 350px; padding: 0px 16px; }
+#wrapper 	{ width: 350px; padding: 0px 5px; }
 .hello-image{ text-align: center }
 .transition, form, ul li i:before, ul li i:after { transition: all 0.25s ease-in-out; }
 .flipIn, h1, ul li { animation: flipdown 0.5s ease both; }
@@ -85,6 +85,7 @@ h3 { font-size: 18px }
     background-color: #bdc3c7;
     margin-right    : 2px;
     padding         : 2px;
+    cursor          : pointer; 
   }
 
   #page-home #serials .active{
@@ -93,6 +94,7 @@ h3 { font-size: 18px }
   }
 
   #page-home footer{ display: flex; background-color: #fff; }
+    #page-home footer>span{ display: none; }
     #page-home footer figure{ display: flex; }
       #page-home footer figure img{ height: 32px; }
       #page-home footer figure figcaption{

@@ -1,5 +1,6 @@
 'use strict';
 
+import $ 			from 'jquery';
 import Backbone 	from 'backbone';
 import Template 	from '../../hbs/home.hbs';
 import logout 		from '../modules/user/logout';
@@ -39,6 +40,8 @@ class Home extends Backbone.View {
 		// Set listeners
 		// Событие отрабатывает, когда в представлении списка сриалов выбирают сериал
 		this.listenTo( this.app.SerialsListView , 'serialSelected' , this.serialSelected );
+		// Прослушиваем ajax запросы и анимируем их
+		this.setAjaxAction();
 	}
 
 	/* Рендериг представления страницы */
@@ -68,6 +71,35 @@ class Home extends Backbone.View {
 	 */
 	serialSelected( options ){
 		this.app.SerialView.render({ model : options.model });
+	}
+
+	setAjaxAction(){
+		let frost 	= 'images/cat-walk-icon.png';
+		let move 	= 'images/cat-walk-icon.gif'; 
+		let $image 	= $('#load-image');
+		let $message= $('footer>span');
+
+		$( document ).ajaxStart(function() {
+			console.log('ajax start');
+			$image.attr('src' , move );
+		});
+
+		$( document ).ajaxStop(function() {
+			console.log('ajax stop'); 
+			
+			// Останавливаем изображение загрузки через секунду
+			// и показываем сообщение
+			setTimeout(() =>{
+				$image.attr('src' , frost );
+				$message.fadeIn(500);
+
+				// Прячем сообщение через 2 секунды
+				setTimeout(() => {
+					$message.fadeOut( 1000 );
+				}, 2000 );
+
+			}, 1000 );
+		});
 	}
 }
 
