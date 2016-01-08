@@ -13,7 +13,7 @@ import TemplateSerial 	from '../../hbs/serial.hbs';
 class Serial extends Backbone.View{
 	constructor( options ){
 		super({
-			 el 	: '.js-serial' ,
+			 el 	: '#serial' ,
 			 events : {
 			 	'click .js-show-serial-settings' : 'toggleSerialSettings'
 			 }
@@ -25,6 +25,8 @@ class Serial extends Backbone.View{
 	}
 
 	render( options ){
+		console.log('render serial view');
+
 		this.model = options.model;
 
 		this.$el.hide( 300 , () => {

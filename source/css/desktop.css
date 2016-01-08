@@ -1,15 +1,14 @@
 img 	{ margin: auto; }
 html 	{ background-color: #fefffa; font-family: "Titillium Web", sans-serif; color: rgba(48, 69, 92, 0.8); }
-body  { font-size: 14px; }
+body  { font-size: 11px; }
 footer , header { text-align: center }
 
 h1, h2 , h3 	{ color: #ff6873; }
 h1 		{ text-transform: uppercase; font-size: 24px; letter-spacing: 3px; font-weight: 100; }
 h3 { font-size: 18px }
 
-#wrapper 	{ width: 415px; padding: 0px 16px; }
+#wrapper 	{ width: 350px; padding: 0px 16px; }
 .hello-image{ text-align: center }
-
 .transition, form, ul li i:before, ul li i:after { transition: all 0.25s ease-in-out; }
 .flipIn, h1, ul li { animation: flipdown 0.5s ease both; }
 
@@ -26,151 +25,62 @@ h3 { font-size: 18px }
 /* AUTH PAGE */
 .auth-page input , .auth-page button { width: 100%; margin-bottom: 10px; height: 34px; }
 
-/* HOME PAGE */
-.home-page form {
-  display: flex;
-  align-items: center;
-}
+/* HOME PAGE START */
+#page-home{  }
 
-  .home-page input{
-    /*height: 34px;*/
-    /*width: 100px;*/
+  #page-home header{
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
   }
 
-  .home-page header{
-    margin-top: 16px;
-    display: flex;
-    justify-content: space-between;
-    /*align-items: center;*/
-  }
-
-    .home-page .serial-header-icon{
-      font-size: 14px;
+    #page-home #serial-title{
+      text-align  : left;
     }
+      #page-home #serial-title span{
+        font-size         : 14px;
+        padding           : 2px;
+        background-color  : #27ae60;
+        color             : #fff;
+        text-transform    : uppercase; 
+      }
+      #page-home .serial-counter{
+        line-height   : 1;
+        margin-left   : 15px;
+        display       : flex;
+        flex-direction: column; 
+      }
+        #page-home .serial-counter a{ font-size: 14px; margin: 0px 2px; }
+        #page-home .serial-counter div:first-child{display: flex; align-items: center;}
 
-  .serial-header-title{
-    /*flex-grow: 12;*/
-    text-align: left;
-  }
-    .current-serial{
-      color: #fff; padding: 3px; font-size: 16px; text-transform: uppercase;
-    }
+    #page-home #serial-panel{ padding: 5px 0px; }
+      #page-home #serial-panel .nav>li>a{ padding: 2px 15px; }
+      #page-home #serial-panel .tab-content{
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-top: none;
+      }
 
-  .serial-header-counter{
-    line-height: 1.1;
-    margin-left: 10px;
-  }
-
-    .serial-header-counter span{
-      font-size: 12px;
-      color: #bdc3c7;
-    }
-
-    .serial-header-counter div{
-      display: flex;
-      align-items: center;
-    }
-
-  .info-control-icon{
-    margin-left: 10px;
-  }
-
-  .home-page footer{
-    background: none;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 15px;
+  #page-home #serials span{
+    text-transform  : uppercase;
+    background-color: #bdc3c7;
+    margin-right    : 2px;
+    padding         : 2px;
   }
 
-  .home-page footer img{
-    height: 45px;
-    margin:0px;
-  }
+  #page-home footer{ display: flex; background-color: #fff; }
+    #page-home footer figure{ display: flex; }
+      #page-home footer figure img{ height: 20px; }
+      #page-home footer figure figcaption{
+        color         : #e74c3c;
+        margin-left   : 10px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
 
-  .home-page footer h1{
-    margin: 0px 10px;
-    font-size: 20px;
-    padding: 0px;
-  }
-
-  .home-page footer a{
-    margin-right: 5px;
-  }
-
-  .btn{
-    line-height: 0.4; 
-  }
-
-  .element-serials-list{
-    color: #fff;
-    font-size: 14px;
-    text-transform: uppercase;
-    padding: 3px;
-    cursor: pointer;
-  }
-
-  .js-serials-list {
-
-  }
-
-  .info-control{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 15px;
-  }
-
-  .js-serials-element{
-    margin-left: 3px;
-  }
-
-    .js-serials-element.active{
-      background-color: #c0392b !important;
-    }
-
-  .js-serial-info{
-    font-size: 14px;
-  }
-
-    .js-serial-info button{
-      /*height: 25px;*/
-    }
-
-    .js-serial-info-control a{
-      margin-left: 10px;
-      font-size: 16px;
-    }
-
-  .js-serial-settings{
-    display: none;
-  }
-
-    .js-serial-settings div{
-      display: flex;
-      align-items: center;
-    }
-
-    .js-serial-settings div span{
-      margin-right: 10px;
-    }
-
-    .js-serial-settings input{
-      height: 24px;
-      width: 60%
-    }
-
-    .js-serial-settings button{
-      margin-top: 10px;
-    }
-
-    .js-serial-settings a{
-      font-size: 16px;
-      margin-left: 15px;
-    }
+/* HOME PAGE END */
 
 /* Accordion code */
-
-
 .accordion h2 {
   font-size: 18px;
   font-weight: 300;
