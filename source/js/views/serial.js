@@ -9,6 +9,8 @@ import rivets 			from 'rivets';
 import rivets_backbone	from 'rivets-backbone-adapter';
 import TemplateSerial 	from '../../hbs/serial.hbs';
 
+// Расширение для риветс - добавляет класс active если модель НЕ новая
+rivets.binders.noactive = ( el , value ) => { if( !value ){ $( el ).addClass('active') } }
 
 class Serial extends Backbone.View{
 	constructor( options ){
@@ -25,8 +27,6 @@ class Serial extends Backbone.View{
 	}
 
 	render( options ){
-		console.log('render serial view');
-
 		this.model = options.model;
 
 		this.$el.hide( 300 , () => {

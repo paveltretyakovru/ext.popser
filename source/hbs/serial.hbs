@@ -29,27 +29,33 @@
 </header>
 
 <section id="serial-panel">
+
+	<!-- TABS -->
 	<ul class="nav nav-tabs" role="tablist">
 		
-		<li role="presentation" class="active" rv-hide="model.isNew">
-			<a href="#panel-serial-link" aria-controls="panel-serial-link" role="tab" data-toggle="tab" class="fui-link"></a>
-		</li>
-		<li role="presentation" rv-show="model.isNew">
+		<!-- ССЫЛКА -->
+		<li role="presentation" rv-noactive="model.isNew">
 			<a href="#panel-serial-link" aria-controls="panel-serial-link" role="tab" data-toggle="tab" class="fui-link"></a>
 		</li>
 
+		<!-- НАСТРОЙКИ -->
 		<li role="presentation" rv-class-active="model.isNew">
 			<a href="#panel-serial-config" aria-controls="panel-serial-config" role="tab" data-toggle="tab" class="fui-gear"></a>
 		</li>
+
+		<!-- УДАЛИТЬ -->
 		<li role="presentation">
 			<a href="#panel-serial-delete" aria-controls="panel-serial-delete" role="tab" data-toggle="tab" class="fui-trash"></a>
 		</li>
 	</ul>
+	<!-- TABS END -->
 
 	<!-- Tab panes -->
 	<div class="tab-content">
-		<div role="tabpanel" class="tab-pane active" rv-hide="model.isNew" id="panel-serial-link"> link </div>
-		<div role="tabpanel" class="tab-pane" rv-show="model.isNew" id="panel-serial-link"> link </div>
+
+		<!-- LINK PANEL -->
+		<div role="tabpanel" class="tab-pane" rv-noactive="model.isNew" id="panel-serial-link"> link </div>
+		<!-- LINK PANEL END -->
 
 		<div role="tabpanel" class="tab-pane" rv-class-active="model.isNew" id="panel-serial-config"> config </div>
 		<div role="tabpanel" class="tab-pane" id="panel-serial-delete"> delete </div>

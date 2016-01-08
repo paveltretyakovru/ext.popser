@@ -40,7 +40,7 @@ h3 { font-size: 18px }
       #page-home #serial-title span{
         font-size         : 14px;
         padding           : 2px;
-        background-color  : #27ae60;
+        background-color  : #8e44ad;
         color             : #fff;
         text-transform    : uppercase; 
       }
@@ -75,7 +75,7 @@ h3 { font-size: 18px }
 
   #page-home footer{ display: flex; background-color: #fff; }
     #page-home footer figure{ display: flex; }
-      #page-home footer figure img{ height: 20px; }
+      #page-home footer figure img{ height: 32px; }
       #page-home footer figure figcaption{
         color         : #e74c3c;
         margin-left   : 10px;
