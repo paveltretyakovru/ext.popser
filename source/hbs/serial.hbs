@@ -54,10 +54,37 @@
 	<div class="tab-content">
 
 		<!-- LINK PANEL -->
-		<div role="tabpanel" class="tab-pane" rv-noactive="model.isNew" id="panel-serial-link"> link </div>
+		<div role="tabpanel" class="tab-pane" rv-noactive="model.isNew" id="panel-serial-link">
+			<div class="input-group">
+				
+				<span class="input-group-btn">
+					<button class="btn fui-play btn-default" type="button" title="Перейти по ссылке"></button>
+				</span>
+
+				<input type="text" class="form-control" placeholder="Ссылка на сериал" rv-value="model:link">
+				
+				<span class="input-group-btn">
+					<button class="btn fui-window btn-default" type="button" title="Вставить текущий адрес страницы"></button>
+					<button class="btn fui-search btn-default" type="button" title="Найти другую ссылку"></button>
+				</span>
+
+			</div>
+		</div>
 		<!-- LINK PANEL END -->
 
-		<div role="tabpanel" class="tab-pane" rv-class-active="model.isNew" id="panel-serial-config"> config </div>
+		<!-- CONFIG PANEL -->
+		<div role="tabpanel" class="tab-pane" rv-class-active="model.isNew" id="panel-serial-config">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Название сериала" rv-value="model:title">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">Сохранить</button>
+				</span>
+			</div><!-- /input-group -->
+		</div>
+		<!-- CONFIG PANEL END -->
+
+		<!-- DELETE PANEL -->
 		<div role="tabpanel" class="tab-pane" id="panel-serial-delete"> delete </div>
+		<!-- DELETE PANEL END -->
 	</div>
 </section>
