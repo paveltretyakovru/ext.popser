@@ -56,8 +56,8 @@ h3 { font-size: 18px }
     #page-home #serial-panel{ padding: 5px 0px; }
       #page-home #serial-panel .nav>li>a{ padding: 2px 15px; }
       #page-home #serial-panel .tab-content{
-        padding: 5px;
-        border: 1px solid #ddd;
+        padding   : 5px;
+        border    : 1px solid #ddd;
         border-top: none;
       }
 
@@ -66,6 +66,11 @@ h3 { font-size: 18px }
     background-color: #bdc3c7;
     margin-right    : 2px;
     padding         : 2px;
+  }
+
+  #page-home #serials .active{
+    background-color: #2980b9;
+    color           : #fff;
   }
 
   #page-home footer{ display: flex; background-color: #fff; }
