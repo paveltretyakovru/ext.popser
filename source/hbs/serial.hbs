@@ -35,17 +35,22 @@
 		
 		<!-- ССЫЛКА -->
 		<li role="presentation" rv-noactive="model.isNew" rv-hide="model.isNew">
-			<a href="#panel-serial-link" aria-controls="panel-serial-link" role="tab" data-toggle="tab" class="fui-link"></a>
+			<a href="#panel-serial-link" aria-controls="panel-serial-link" role="tab" data-toggle="tab" class="fui-link" title="Ссылка сериала"></a>
 		</li>
 
 		<!-- НАСТРОЙКИ -->
 		<li role="presentation" rv-show="model.isNew" rv-class-active="model.isNew">
-			<a href="#panel-serial-config" aria-controls="panel-serial-config" role="tab" data-toggle="tab" class="fui-gear"></a>
+			<a href="#panel-serial-config" aria-controls="panel-serial-config" role="tab" data-toggle="tab" class="fui-gear" title="Настройки"></a>
+		</li>
+
+		<!-- Помощь -->
+		<li role="presentation">
+			<a href="#panel-serial-info" aria-controls="panel-serial-info" role="tab" data-toggle="tab" class="fui-info-circle" title="Помощь"></a>
 		</li>
 
 		<!-- УДАЛИТЬ -->
 		<li role="presentation" rv-hide="model.isNew">
-			<a href="#panel-serial-delete" aria-controls="panel-serial-delete" role="tab" data-toggle="tab" class="fui-trash"></a>
+			<a href="#panel-serial-delete" aria-controls="panel-serial-delete" role="tab" data-toggle="tab" class="fui-trash" title="Удалить"></a>
 		</li>
 	</ul>
 	<!-- TABS END -->
@@ -69,6 +74,7 @@
 				</span>
 
 			</div>
+
 		</div>
 		<!-- LINK PANEL END -->
 
@@ -82,6 +88,22 @@
 			</div><!-- /input-group -->
 		</div>
 		<!-- CONFIG PANEL END -->
+
+		<!-- INFO PANEL -->
+		<div role="tabpanel" class="tab-pane" id="panel-serial-info">
+			<div>
+				Раздел <span class="fui-link"></span> ссылка на сериал : <br /> 
+				Быстрый доступ на страницу выбранного сериала, а так же поиск ссылки на других ресурсах.
+				<ul>
+					<li><span class="fui-play"></span> Перейти по уазанному адресу <br /></li>
+					<li><span class="fui-upload"></span> Вставить адрес текущей старницы <br /></li>
+					<li><span class="fui-search"></span> Поиск ссылки на сериал в базе данных.</li>
+				</ul>
+				Раздел <span class="fui-trash"></span> удаление сериала : <br />
+				Удаление сериала из каталога Ваших сериалов.
+			</div>
+		</div>
+		<!-- info PANEL END -->		
 
 		<!-- DELETE PANEL -->
 		<div role="tabpanel" class="tab-pane" id="panel-serial-delete">

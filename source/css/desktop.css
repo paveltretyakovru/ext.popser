@@ -71,6 +71,8 @@ h3 { font-size: 18px }
       padding: 0px 5px;
     }
 
+    #page-home #panel-serial-info span{ color: #f39c12; }
+
     #page-home #panel-serial-delete div:first-child{
       display     : flex;
       align-items : center;
