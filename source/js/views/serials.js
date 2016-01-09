@@ -31,9 +31,7 @@ class Serials extends Backbone.View{
 
 	render(){
 		this.$el.html( Template );
-		this.model.set( 'collection' , this.SerialsCollection );
-		this.binding = rivets.bind( this.el , { model : this.model } );
-		
+		this.binding = rivets.bind( this.el , { model : this.model , collection : this.SerialsCollection } );
 		return this;
 	}
 
@@ -60,12 +58,13 @@ class Serials extends Backbone.View{
 	}
 
 	createNewSerial( event ){
-		this.SerialsCollection.add({ });
+		this.SerialsCollection.add({});
 	}
 
 	addedModelToCollection( model , collection , options ){
 		this.clearCurrent();
 		model.set( 'current' , true );
+		this.render();
 		this.trigger('serialSelected' , { model : model } );
 	}
 

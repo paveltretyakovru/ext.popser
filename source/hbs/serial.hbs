@@ -4,7 +4,7 @@
 		<span>{model:title}</span>
 	</article>
 	
-	<article class="serial-counter">
+	<article class="serial-counter" rv-hide="model.isNew">
 		<div>
 			<a href="#" class="fui-triangle-up-small" id="js-season-up"></a>
 			<strong>{ model:season }</strong>
@@ -15,7 +15,7 @@
 		</div>
 	</article>
 	
-	<article class="serial-counter">
+	<article class="serial-counter" rv-hide="model.isNew">
 		<div>
 			<a href="#" class="fui-triangle-up-small" id="js-serie-up"></a>
 			<strong>{ model:serie }</strong>
@@ -34,7 +34,7 @@
 	<ul class="nav nav-tabs" role="tablist">
 		
 		<!-- ССЫЛКА -->
-		<li role="presentation" rv-noactive="model.isNew">
+		<li role="presentation" rv-noactive="model.isNew" rv-hide="model.isNew">
 			<a href="#panel-serial-link" aria-controls="panel-serial-link" role="tab" data-toggle="tab" class="fui-link"></a>
 		</li>
 
@@ -44,7 +44,7 @@
 		</li>
 
 		<!-- УДАЛИТЬ -->
-		<li role="presentation">
+		<li role="presentation" rv-hide="model.isNew">
 			<a href="#panel-serial-delete" aria-controls="panel-serial-delete" role="tab" data-toggle="tab" class="fui-trash"></a>
 		</li>
 	</ul>
@@ -85,11 +85,8 @@
 
 		<!-- DELETE PANEL -->
 		<div role="tabpanel" class="tab-pane" id="panel-serial-delete">
-			Удалить сериал из вашего списка?
 			<div>
-				<a href="#fakelink" class="btn btn-block btn-xs btn-success">Да</a>
-				<span></span>
-				<a href="#fakelink" class="btn btn-block btn-xs btn-danger">Нет</a>				
+				<a href="#fakelink" class="btn btn-block btn-xs btn-danger" id="button-serial-delete">Удалить запись</a>				
 			</div>
 		</div>
 		<!-- DELETE PANEL END -->

@@ -50,6 +50,7 @@ class Home extends Backbone.View {
 		// Set listeners
 		// Событие отрабатывает, когда в представлении списка сриалов выбирают сериал
 		this.listenTo( this.app.SerialsListView , 'serialSelected' , this.serialSelected );
+		this.listenTo( this.app.SerialView , 'serialDeleted' , this.serialDeleted );
 		// Прослушиваем ajax запросы и анимируем их
 		this.setAjaxAction();
 	}
@@ -81,6 +82,10 @@ class Home extends Backbone.View {
 	 */
 	serialSelected( options ){
 		this.app.SerialView.render({ model : options.model });
+	}
+
+	serialDeleted(){
+		this.app.SerialView.render();
 	}
 
 	setAjaxAction(){

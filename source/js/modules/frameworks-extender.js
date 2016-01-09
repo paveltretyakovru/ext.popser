@@ -1,5 +1,5 @@
 'use strict';
-import $ from 'jquery';
+import $ 		from 'jquery';
 
 /**
  * Расширение функционала используемых библиотек и фреймворков
@@ -29,5 +29,14 @@ export var FrameworksExtender = (function(){
 		};
 		return $.each(this.serializeArray(), b), a
 	};
+
+
+	$.ajaxPrefilter(function(options, originalOptions, xhr) {
+      var token = app.token;
+     
+      if (token) {
+            return xhr.setRequestHeader('X-CSRF-Token', token);
+      }
+	});
 	
 })();
