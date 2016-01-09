@@ -20,7 +20,11 @@ class Serial extends Backbone.Model{
 	}
 
 	get url(){
-		return 'http://back.popser.app/user/serial'
+		return 'http://back.popser.app/serial'
+	}
+
+	get urlRoot(){
+		return 'http://back.popser.app/serial'
 	}
 }
 

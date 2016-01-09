@@ -2,7 +2,15 @@
 
 import $ from 'jquery';
 
-let Message = ( options ) => {
+export let HideMessage = () => {
+	let $block 		= $('.message');
+
+	setTimeout( () => {
+		$block.hide('500');
+	}, 1000 );
+}
+
+export let Message = ( options ) => {
 	let $block 		= $('.message');
 	let class_error = 'alert alert-danger';
 	
@@ -13,6 +21,7 @@ let Message = ( options ) => {
 
 		for( let mes in options.responseJSON ){
 			$block.append( messages[ mes ] + '<br />' );
+			$block.show( 500 );
 		}
 
 	}
@@ -23,5 +32,3 @@ let Message = ( options ) => {
 			insertResponse( true );
 	}
 }
-
-export default Message;

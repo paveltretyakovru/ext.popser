@@ -1,7 +1,6 @@
 'use strict';
 
 import $				from 'jquery';
-import jQuery 			from 'jquery';
 import _ 				from 'underscore';
 import bootstrap 		from 'bootstrap-browserify';
 import Backbone 		from 'backbone';
@@ -45,8 +44,14 @@ class Serial extends Backbone.View{
 	}
 
 	saveSerial( e ){
-		//console.log( 'Save serial event' , this.model.toJSON() );
-		this.model.save();
+		console.log( 'Save serial event' , this.model.url() );
+		this.model.save()
+			.fail( () =>{
+				console.error('Ошибка запроса');
+			})
+			.done( () =>{
+				console.log('Created' , this.model.toJSON() );
+			});
 	}
 };
 

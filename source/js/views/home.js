@@ -1,16 +1,26 @@
 'use strict';
 
-import $ 			from 'jquery';
-import Backbone 	from 'backbone';
+// Plugins
+import $ 				from 'jquery';
+import Backbone 		from 'backbone';
+import rivets 			from 'rivets';
+import rivets_backbone	from 'rivets-backbone-adapter';
+
+// Templates
 import Template 	from '../../hbs/home.hbs';
-import logout 		from '../modules/user/logout';
+
+// Models
 import Model		from '../models/Home';
-import bodySizeUpd 	from '../modules/bodysize';
+
+// Views
 import SerialsView	from '../views/serials';
 import SerialView 	from '../views/serial';
 
-import rivets 			from 'rivets';
-import rivets_backbone	from 'rivets-backbone-adapter';
+// Modules
+import logout 		from '../modules/user/logout';
+import bodySizeUpd 	from '../modules/bodysize';
+import { Message , HideMessage } from '../modules/message';
+
 
 class Home extends Backbone.View {
 	
@@ -84,9 +94,7 @@ class Home extends Backbone.View {
 			$image.attr('src' , move );
 		});
 
-		$( document ).ajaxStop(function() {
-			console.log('ajax stop'); 
-			
+		$( document ).ajaxSuccess(function( data , other ) {
 			// Останавливаем изображение загрузки через секунду
 			// и показываем сообщение
 			setTimeout(() =>{
@@ -99,6 +107,15 @@ class Home extends Backbone.View {
 				}, 2000 );
 
 			}, 1000 );
+		});
+
+		$( document ).ajaxError(function(event, xhr, settings, thrownError) {
+			Message( xhr );
+
+			setTimeout( () => {
+				$image.attr('src' , frost );
+				HideMessage();
+			}, 1000);
 		});
 	}
 }

@@ -11,6 +11,7 @@ h3 { font-size: 18px }
 .hello-image{ text-align: center }
 .transition, form, ul li i:before, ul li i:after { transition: all 0.25s ease-in-out; }
 .flipIn, h1, ul li { animation: flipdown 0.5s ease both; }
+.message{ display: none }
 
 .no-select, h2 {
 	-webkit-tap-highlight-color: transparent;

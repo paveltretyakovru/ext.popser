@@ -9,6 +9,10 @@ class Serials extends Backbone.Collection{
 
 		this.model = Serial;
 	}
+
+	get url(){
+		return 'http://back.popser.app/serial'
+	}
 }
 
 export default Serials;

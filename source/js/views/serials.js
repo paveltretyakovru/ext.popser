@@ -33,7 +33,8 @@ class Serials extends Backbone.View{
 
 		// Init vars
 		this.app 				= options.app;
-		this.SerialsCollection 	= new Collection( tmpdata );
+		console.log('TEST' , this.app.User.get('catalogs') );
+		this.SerialsCollection 	= new Collection( this.app.User.get('catalogs') );
 
 		// Init listener
 		this.listenTo( this.SerialsCollection , 'add' , this.addedModelToCollection );
