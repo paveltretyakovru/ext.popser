@@ -6,7 +6,7 @@ class User extends Backbone.Model {
 		super( options );
 	}
 
-	get urlRoot() { return host + 'users' }
+	get urlRoot() { return host + 'user' }
 }
 
 export default User;

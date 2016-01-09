@@ -1,6 +1,7 @@
 'use strict';
 
 import $				from 'jquery';
+import 'jquery-ui';
 import _ 				from 'underscore';
 import bootstrap 		from 'bootstrap-browserify';
 import Backbone 		from 'backbone';
@@ -16,7 +17,6 @@ class Serial extends Backbone.View{
 		super({
 			 el 	: '#serial' ,
 			 events : {
-			 	'click .js-show-serial-settings' : 'toggleSerialSettings' ,
 			 	'click #button-save-serial-title': 'saveSerial'
 			 }
 		});
@@ -24,34 +24,53 @@ class Serial extends Backbone.View{
 		this.app 		= options.app;
 		this.model 		= this.app.model;
 		this.$settings 	= $('.js-serial-settings');
+		
+		this.prepareSerialsList();
 	}
 
 	render( options ){
 		this.model = options.model;
 
+
 		this.$el.hide( 300 , () => {
 			this.$el.html( TemplateSerial );
 			if( this.model.isNew() ){ $('.js-serial-settings').css('display' , 'block'); }
-			this.$el.show( 300 );
+			
+			this.$el.show( 300 , () => {
+				$( "input[name=serial-title]" ).autocomplete({ source: this.serialsList });
+			});
+			
 			this.binding = rivets.bind( this.el , { model : this.model } );
 		});
 		return this;
 	}
 
-	toggleSerialSettings( e ){
-		e.preventDefault();
-		$('.js-serial-settings').toggle(300);
-	}
-
+	// Событие отрабатывает по клику - Сохранить (сериал при создании)
 	saveSerial( e ){
-		console.log( 'Save serial event' , this.model.url() );
+
+		if( !this.model.get('_token') ){ this.model.set('_token' , this.app.token ); }
+
 		this.model.save()
 			.fail( () =>{
 				console.error('Ошибка запроса');
 			})
 			.done( () =>{
-				console.log('Created' , this.model.toJSON() );
+				this.render({ model : this.model });
+				console.log('Created' , this.model.isNew() , this.model.toJSON() );
 			});
+	}
+
+	prepareSerialsList(){
+		if( this.app.Serials ){
+			this.serialsList = _.map( this.app.Serials , ( obj ) => {
+				return {
+					label : obj.title ,
+					value : obj.title
+				};
+			})
+
+			console.log('SERIAL LIST' , this.serialsList );
+		}
 	}
 };
 

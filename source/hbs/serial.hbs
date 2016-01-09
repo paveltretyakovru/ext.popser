@@ -39,7 +39,7 @@
 		</li>
 
 		<!-- НАСТРОЙКИ -->
-		<li role="presentation" rv-class-active="model.isNew">
+		<li role="presentation" rv-show="model.isNew" rv-class-active="model.isNew">
 			<a href="#panel-serial-config" aria-controls="panel-serial-config" role="tab" data-toggle="tab" class="fui-gear"></a>
 		</li>
 
@@ -73,9 +73,9 @@
 		<!-- LINK PANEL END -->
 
 		<!-- CONFIG PANEL -->
-		<div role="tabpanel" class="tab-pane" rv-class-active="model.isNew" id="panel-serial-config">
+		<div role="tabpanel" class="tab-pane" rv-show="model.isNew" rv-class-active="model.isNew" id="panel-serial-config">
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Название сериала" rv-value="model:title">
+				<input type="text" class="form-control" placeholder="Название сериала" rv-value="model:title" name="serial-title">
 				<span class="input-group-btn">
 					<button class="btn btn-default" type="button" id="button-save-serial-title">Сохранить</button>
 				</span>
