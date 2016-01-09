@@ -17,14 +17,19 @@ class Serial extends Backbone.View{
 		super({
 			 el 	: '#serial' ,
 			 events : {
-			 	'click #button-save-serial-title': 'saveSerial'
+			 	'click #button-save-serial-title'	: 'saveSerial' 		,
+			 	'click #js-season-up'				: 'incrementSeason' , 
+			 	'click #js-season-down'				: 'decrementSeason' ,
+			 	'click #js-serie-up'				: 'incrementSerie' 	, 
+			 	'click #js-serie-down'				: 'decrementSerie' 	, 
+
 			 }
 		});
 
 		this.app 		= options.app;
 		this.model 		= this.app.model;
 		this.$settings 	= $('.js-serial-settings');
-		
+
 		// Подготавливаем список сериалов для автоформы
 		this.prepareSerialsList();
 	}
@@ -32,6 +37,7 @@ class Serial extends Backbone.View{
 	render( options ){
 		this.model = options.model;
 
+		if( !this.model.get('_token') ){ this.model.set('_token' , this.app.token ); }
 
 		this.$el.hide( 300 , () => {
 			this.$el.html( TemplateSerial );
@@ -52,14 +58,44 @@ class Serial extends Backbone.View{
 		return this;
 	}
 
+	incrementSeason( e ){
+		let val = parseInt( this.model.get('season') , 10 );
+
+		this.model.set('season' , val + 1 );
+		this.model.save();
+	}
+
+	decrementSeason( e ){
+		let val = parseInt( this.model.get('season') , 10 );		
+		
+		if( val !== 0 ){
+			this.model.set('season' , val - 1 );
+			this.model.save();
+		}
+	}
+
+	incrementSerie( e ){
+		let val = parseInt( this.model.get('serie') , 10 );
+
+		this.model.set('serie' , val + 1 );
+		this.model.save();
+	}
+
+	decrementSerie( e ){
+		let val = parseInt( this.model.get('serie') , 10 );		
+		
+		if( val !== 0 ){
+			this.model.set('serie' , val - 1 );
+			this.model.save();
+		}
+	}
+
 	/**
 	 * Событие отрабатывает по клику - Сохранить (сериал при создании)
 	 * @param  {jQuery event } e standart jquery event object
 	 * @return {void}   сохраняет созданный сериал в каталог пользователя
 	 */
 	saveSerial( e ){
-
-		if( !this.model.get('_token') ){ this.model.set('_token' , this.app.token ); }
 
 		this.model.save()
 			.fail( () =>{

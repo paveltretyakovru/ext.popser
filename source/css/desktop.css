@@ -88,6 +88,9 @@ h3 { font-size: 18px }
     padding         : 2px;
     cursor          : pointer; 
   }
+    #page-home #serials span:after{
+      content: ' '
+    }
 
   #page-home #serials .active{
     background-color: #2980b9;

@@ -10,16 +10,6 @@ import Collection 	from '../collections/Serials';
 import SerialsModel from '../models/Serials';
 import SerialModel 	from '../models/Serial';
 
-
-var tmpdata = [
-	// { id : 1 , title : 'First title' , current : false , season : 0 , series : 0 } ,
-	// { id : 2 , title : 'Second title', current : false , season : 0 , series : 0 } ,
-	// { id : 3 , title : 'Ночь живых мертвецов', current : false , season : 0 , series : 0 } ,
-	// { id : 4 , title : 'Four title', current : false , season : 0 , series : 0 } 	,
-	// { id : 5 , title : 'Five title', current : false , season : 0 , series : 0 }	,
-	// { id : 6 , title : 'Ходячие мертвецы', current : false , season : 0 , series : 0 }
-];
-
 class Serials extends Backbone.View{
 	constructor( options ){
 		super({
@@ -33,7 +23,6 @@ class Serials extends Backbone.View{
 
 		// Init vars
 		this.app 				= options.app;
-		console.log('TEST' , this.app.User.get('catalogs') );
 		this.SerialsCollection 	= new Collection( this.app.User.get('catalogs') );
 
 		// Init listener
