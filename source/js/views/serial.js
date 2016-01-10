@@ -7,6 +7,9 @@ import bootstrap 		from 'bootstrap-browserify';
 import Backbone 		from 'backbone';
 import rivets 			from 'rivets';
 import rivets_backbone	from 'rivets-backbone-adapter';
+
+import { getTab , getTabUrl , redirectTab } from '../modules/chrome/tab';
+
 import TemplateSerial 	from '../../hbs/serial.hbs';
 
 // Расширение для риветс - добавляет класс active если модель НЕ новая
@@ -17,12 +20,14 @@ class Serial extends Backbone.View{
 		super({
 			 el 	: '#serial' ,
 			 events : {
-			 	'click #button-save-serial-title'	: 'saveSerial' 		,
-			 	'click #js-season-up'				: 'incrementSeason' , 
-			 	'click #js-season-down'				: 'decrementSeason' ,
-			 	'click #js-serie-up'				: 'incrementSerie' 	, 
-			 	'click #js-serie-down'				: 'decrementSerie' 	,
-			 	'click #button-serial-delete'		: 'deleteSerial'
+			 	'click #button-save-serial-title'		: 'saveSerial' 		,
+			 	'click #js-season-up'					: 'incrementSeason' , 
+			 	'click #js-season-down'					: 'decrementSeason' ,
+			 	'click #js-serie-up'					: 'incrementSerie' 	, 
+			 	'click #js-serie-down'					: 'decrementSerie' 	,
+			 	'click #button-serial-delete'			: 'deleteSerial' 	,
+			 	'click #button-serial-set-current-url'	: 'setCurrentUrl'	,
+			 	'click #button-serial-go-to-link'		: 'openLink'
 			 }
 		});
 
@@ -39,9 +44,7 @@ class Serial extends Backbone.View{
 			this.$el.hide( 300 , () => {
 				this.$el.html( TemplateSerial );
 				if( this.model.isNew() ){ $('.js-serial-settings').css('display' , 'block'); }
-				
 				this.$el.show( 300 , () => {
-
 					// Вешаем автофому на инпут с заголовком сериала
 					$( "input[name=serial-title]" ).autocomplete({
 						source 	: this.serialsList ,
@@ -49,7 +52,6 @@ class Serial extends Backbone.View{
 						select 	: ( event , ui ) => { this.model.set( 'title' , ui.item.value ); }
 					});
 				});
-				
 				this.binding = rivets.bind( this.el , { model : this.model } );
 			});	
 		} else {
@@ -126,6 +128,21 @@ class Serial extends Backbone.View{
 				};
 			})
 		}
+	}
+
+	setCurrentUrl( e ){
+		getTabUrl( ( url ) => {
+			this.model.set( 'link' , url );
+			this.model.save();
+		});
+	}
+
+	openLink( e ){
+		let link = this.model.get('link');
+		console.log('openLink event' , link );
+		if( link ){
+			redirectTab( link );
+		} else { console.error('Dont isset serial link'); }
 	}
 };
 
