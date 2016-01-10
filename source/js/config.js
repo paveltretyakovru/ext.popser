@@ -6,5 +6,6 @@ export const routes 	 = {
 	checkauth 	: 'auth/check' 		,
 	register 	: 'auth/register' 	,
 	login 		: 'auth/login'		,
-	logout		: 'auth/logout'
+	logout		: 'auth/logout'		,
+	searchlinks	: 'links/search'
 };

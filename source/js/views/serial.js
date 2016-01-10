@@ -9,7 +9,9 @@ import rivets 			from 'rivets';
 import rivets_backbone	from 'rivets-backbone-adapter';
 
 import { getTab , getTabUrl , redirectTab } from '../modules/chrome/tab';
+import { host as _HOST , routes as _ROUTES} from '../config';
 
+import LinksSearchView 	from '../views/links-search';
 import TemplateSerial 	from '../../hbs/serial.hbs';
 
 // Расширение для риветс - добавляет класс active если модель НЕ новая
@@ -34,7 +36,6 @@ class Serial extends Backbone.View{
 
 		this.app 		= options.app;
 		this.$settings 	= $('.js-serial-settings');
-		this.links 		= {};
 
 		// Подготавливаем список сериалов для автоформы
 		this.prepareSerialsList();
@@ -45,22 +46,23 @@ class Serial extends Backbone.View{
 			this.model = options.model;
 			this.$el.hide( 300 , () => {
 				this.$el.html( TemplateSerial );
-				if( this.model.isNew() ){ $('.js-serial-settings').css('display' , 'block'); }
-				this.$el.show( 300 , () => {
-					// Вешаем автофому на инпут с заголовком сериала
-					$( "input[name=serial-title]" ).autocomplete({
-						source 	: this.serialsList ,
-						// Риветс не видет изменения внесенные плагином autocomplete
-						select 	: ( event , ui ) => { this.model.set( 'title' , ui.item.value ); }
-					});
-				});
-				this.binding = rivets.bind( this.el , { model : this.model , links : this.links } );
+				this.binding = rivets.bind( this.el , { model : this.model } );
+				this.initAutocomplete();
+				this.prepareLinksSearchListView();
+				this.$el.show( 300 );
 			});	
-		} else {
-			this.$el.hide( 300 );
-		}
+		} else { this.$el.hide( 300 ); }
 
 		return this;
+	}
+
+	initAutocomplete(){
+		// Вешаем автофому на инпут с заголовком сериала
+		$( "input[name=serial-title]" ).autocomplete({
+			source 	: this.serialsList ,
+			// Риветс не видет изменения внесенные плагином autocomplete
+			select 	: ( event , ui ) => { this.model.set( 'title' , ui.item.value ); }
+		});
 	}
 
 	// #### Методы для обновления счетчиков сериала НАЧАЛО #### //
@@ -138,6 +140,15 @@ class Serial extends Backbone.View{
 	}
 
 	/**
+	 * Инициализирует представление со списком дополнительных ссылок
+	 * @return {void} Создает вид в this.LinksSearvhList и рендерит его
+	 */
+	prepareLinksSearchListView(){
+		this.LinksSearchList = new LinksSearchView();
+		this.LinksSearchList.render();
+	}
+
+	/**
 	 * Вставляет в поле ссылки текущий адрес страницы
 	 * @param {JQuery event object} e обычный event объект JQuery
 	 * @return {void}	вставляет ссылку в поле "ссылка"
@@ -168,7 +179,10 @@ class Serial extends Backbone.View{
 	 * @return {void}   Выводит список найденых ссылок
 	 */
 	searchLinks( e ){
-		
+		this.LinksSearchList.collection.fetch()
+		.done( () => {
+			this.LinksSearchList.render();
+		});
 	}
 };
 
