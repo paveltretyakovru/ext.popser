@@ -73,6 +73,28 @@ h3 { font-size: 18px }
 
     #page-home #panel-serial-info span{ color: #f39c12; }
 
+    #page-home #block-links-search{ padding: 5px 0px; }
+      #page-home #block-links-search #block-links-list{
+        display     : flex;
+        align-items : center;
+        justify-content : space-around;
+      }
+        #page-home #block-links-search #block-links-list img {
+          height              : 35px;
+          -moz-transition     : all 0.8s ease-in-out;
+          -webkit-transition  : all 0.8s ease-in-out;
+          -o-transition       : all 0.8s ease-in-out;
+          -ms-transition      : all 0.8s ease-in-out;
+          transition          : all 0.8s ease-in-out;
+        }
+        #page-home #block-links-search #block-links-list img:hover{
+          -moz-transform    : rotate(360deg);
+          -webkit-transform : rotate(360deg);
+          -o-transform      : rotate(360deg);
+          -ms-transform     : rotate(360deg);
+          transform         : rotate(360deg);
+        }
+
     #page-home #panel-serial-delete div:first-child{
       display     : flex;
       align-items : center;

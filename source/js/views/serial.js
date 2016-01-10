@@ -144,7 +144,7 @@ class Serial extends Backbone.View{
 	 * @return {void} Создает вид в this.LinksSearvhList и рендерит его
 	 */
 	prepareLinksSearchListView(){
-		this.LinksSearchList = new LinksSearchView();
+		this.LinksSearchList = new LinksSearchView({ serial : this.model });
 		this.LinksSearchList.render();
 	}
 
@@ -179,10 +179,7 @@ class Serial extends Backbone.View{
 	 * @return {void}   Выводит список найденых ссылок
 	 */
 	searchLinks( e ){
-		this.LinksSearchList.collection.fetch()
-		.done( () => {
-			this.LinksSearchList.render();
-		});
+		this.LinksSearchList.trigger('loadLinks');
 	}
 };
 

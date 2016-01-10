@@ -1,3 +1,19 @@
-<ul>
-	<li rv-each-link="links.models">{link:url}</li>
-</ul>
+<div id="block-links-serach-empty" rv-show="model:noresult">
+	Извините, но поиск не дал результатов. <br />
+	Чтобы улучшить поиск, попробуйте:
+		<ul>
+			<li>Проверить, правильность написания сериала</li>
+			<li>Попробовать в другой раз</li>
+		</ul>
+</div>
+<span rv-show="links.length">Результаты поиска: </span>
+<div id="block-links-list">
+	<ul rv-each-link="links.models">
+		<li >
+			<a href="#">{link:url}</a>
+		</li>
+	</ul>
+	<a rv-show="links.length" href="#" id="link-refresh-links-search" title="Поискать еще...">
+		<img src="images/reload.png">
+	</a>
+</div>
