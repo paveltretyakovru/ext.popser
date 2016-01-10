@@ -27,12 +27,14 @@ class Serial extends Backbone.View{
 			 	'click #js-serie-down'					: 'decrementSerie' 	,
 			 	'click #button-serial-delete'			: 'deleteSerial' 	,
 			 	'click #button-serial-set-current-url'	: 'setCurrentUrl'	,
-			 	'click #button-serial-go-to-link'		: 'openLink'
+			 	'click #button-serial-go-to-link'		: 'openLink'		,
+			 	'click #button-serial-serach-links'		: 'searchLinks'
 			 }
 		});
 
 		this.app 		= options.app;
 		this.$settings 	= $('.js-serial-settings');
+		this.links 		= {};
 
 		// Подготавливаем список сериалов для автоформы
 		this.prepareSerialsList();
@@ -52,7 +54,7 @@ class Serial extends Backbone.View{
 						select 	: ( event , ui ) => { this.model.set( 'title' , ui.item.value ); }
 					});
 				});
-				this.binding = rivets.bind( this.el , { model : this.model } );
+				this.binding = rivets.bind( this.el , { model : this.model , links : this.links } );
 			});	
 		} else {
 			this.$el.hide( 300 );
@@ -108,7 +110,12 @@ class Serial extends Backbone.View{
 				this.render({ model : this.model });});
 	}
 
-	deleteSerial( e ){
+	/**
+	 * Удаляет сериал из каталога пользователя
+	 * @param  { JQuery event object }  Default JQuery event object
+	 * @return {void}  Send request to server for delete serial, and delete model in front
+	 */
+	deleteSerial( ){
 		this.model.destroy()
 			.done( () => {
 				this.trigger('serialDeleted');
@@ -130,6 +137,11 @@ class Serial extends Backbone.View{
 		}
 	}
 
+	/**
+	 * Вставляет в поле ссылки текущий адрес страницы
+	 * @param {JQuery event object} e обычный event объект JQuery
+	 * @return {void}	вставляет ссылку в поле "ссылка"
+	 */
 	setCurrentUrl( e ){
 		getTabUrl( ( url ) => {
 			this.model.set( 'link' , url );
@@ -137,12 +149,26 @@ class Serial extends Backbone.View{
 		});
 	}
 
+	/**
+	 * Открывает страницу в текущей вкладке, указанную в поле "ссылка"
+	 * @param  {JQuery event object} e Обычный event объект JQuery
+	 * @return {void}   Открывает страницу
+	 */
 	openLink( e ){
 		let link = this.model.get('link');
 		console.log('openLink event' , link );
 		if( link ){
 			redirectTab( link );
 		} else { console.error('Dont isset serial link'); }
+	}
+
+	/**
+	 * Поиск ссылок для текущего сериала
+	 * @param  {JQuery event object} e Обычный event объект JQuery
+	 * @return {void}   Выводит список найденых ссылок
+	 */
+	searchLinks( e ){
+		
 	}
 };
 
