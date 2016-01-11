@@ -8,8 +8,8 @@
 </div>
 <span rv-show="links.length">Результаты поиска: </span>
 <div id="block-links-list">
-	<ul rv-each-link="links.models">
-		<li >
+	<ul>
+		<li rv-each-link="links.models">
 			<a href="#">{link:url}</a>
 		</li>
 	</ul>

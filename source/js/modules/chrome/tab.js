@@ -2,6 +2,7 @@
 
 export let getTab = ( callback ) => {
 	return chrome.tabs.query({currentWindow: true, active: true}, ( tab ) => {
+		console.log('Tab!' , tab);
 		let Tab = tab[0];
 		if( callback ){ return callback( Tab ); }
 	});
@@ -26,6 +27,7 @@ export let getTabTitle = ( callback , encode ) => {
 export let redirectTab = ( url , callback ) => {
 	getTab( ( Tab ) => {
 		if( callback ) callback( Tab );
-		return chrome.tabs.update( Tab.id , { url : url });
+		// return chrome.tabs.update( Tab.id , { url : url });
+		chrome.tabs.create({ url: url });
 	}); 	
 }

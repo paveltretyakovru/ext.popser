@@ -8,7 +8,7 @@ import Backbone 		from 'backbone';
 import rivets 			from 'rivets';
 import rivets_backbone	from 'rivets-backbone-adapter';
 
-import { getTab , getTabUrl , redirectTab } from '../modules/chrome/tab';
+import { getTab , getTabUrl , getTabTitle , redirectTab } from '../modules/chrome/tab';
 import { host as _HOST , routes as _ROUTES} from '../config';
 
 import LinksSearchView 	from '../views/links-search';
@@ -68,9 +68,9 @@ class Serial extends Backbone.View{
 	// #### Методы для обновления счетчиков сериала НАЧАЛО #### //
 	incrementSeason( e ){
 		let val = parseInt( this.model.get('season') , 10 );
-
 		this.model.set('season' , val + 1 );
 		this.model.save();
+		this.checkLink( () => { this.model.save(); });
 	}
 	decrementSeason( e ){
 		let val = parseInt( this.model.get('season') , 10 );		
@@ -78,6 +78,7 @@ class Serial extends Backbone.View{
 		if( val !== 0 ){
 			this.model.set('season' , val - 1 );
 			this.model.save();
+			this.checkLink( () => { this.model.save(); });
 		}
 	}
 	incrementSerie( e ){
@@ -85,6 +86,7 @@ class Serial extends Backbone.View{
 
 		this.model.set('serie' , val + 1 );
 		this.model.save();
+		this.checkLink( () => { this.model.save(); });
 	}
 	decrementSerie( e ){
 		let val = parseInt( this.model.get('serie') , 10 );		
@@ -92,6 +94,7 @@ class Serial extends Backbone.View{
 		if( val !== 0 ){
 			this.model.set('serie' , val - 1 );
 			this.model.save();
+			this.checkLink( () => { this.model.save(); });
 		}
 	}
 	// #### Методы для обновления счетчиков сериала КОНЕЦ #### //
@@ -180,6 +183,33 @@ class Serial extends Backbone.View{
 	 */
 	searchLinks( e ){
 		this.LinksSearchList.trigger('loadLinks');
+	}
+
+	askUpdateLink(){
+
+	}
+
+	/**
+	 * Выполнеят проверку адреса текущей вкладки. Если заголовок страницы содержит название
+	 * сериала и адерс модели не совпадает с ссылкой обновляем адрес страницы в моделе
+	 * @param  {Function} callback методы для работы с вкладками асинхронны, поэтому нужен callback
+	 * @return {void}            выполняет заданный callback
+	 */
+	checkLink( callback ){
+		getTabTitle( ( title ) => {
+			console.log('CHECK TITLE' , title );
+			var title = title.toLowerCase();
+			getTabUrl( ( url ) => {
+				if( url != this.model.get('link') ){
+					let modeltitle = this.model.get('title');
+					console.log('CHECK DATA' , title , url );
+					if( title.indexOf( modeltitle.toLowerCase() ) !== -1 ){
+						this.model.set( 'link' , url );
+					}
+				}
+				callback();
+			});
+		});
 	}
 };
 
