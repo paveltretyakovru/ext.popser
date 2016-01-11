@@ -10,7 +10,7 @@
 <div id="block-links-list">
 	<ul>
 		<li rv-each-link="links.models">
-			<a href="#">{link:url}</a>
+			<a rv-href="link:url" class="js-searched-link">{link:url}</a>
 		</li>
 	</ul>
 	<a rv-show="links.length" href="#" id="link-refresh-links-search" title="Поискать еще...">

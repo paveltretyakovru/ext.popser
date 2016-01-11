@@ -7,13 +7,15 @@ import rivets_backbone	from 'rivets-backbone-adapter';
 
 import Links 	from '../collections/Links';
 import Template from '../../hbs/links-search-list.hbs';
+import { getTab , getTabUrl , getTabTitle , redirectTab } from '../modules/chrome/tab';
 
 class LinksSearch extends Backbone.View{
 	constructor( options ){
 		super({
 			 el 	: '#block-links-search' ,
 			 events : {
-			 	'click #link-refresh-links-search'	: 'loadLinks'
+			 	'click #link-refresh-links-search'	: 'loadLinks' ,
+			 	'click .js-searched-link' 			: 'openSearchedLink'
 			 }
 		});
 		this.serial 	= options.serial;
@@ -35,6 +37,10 @@ class LinksSearch extends Backbone.View{
 		this.checkResult();
 	}
 
+	/**
+	 * Загрузка ссылок сериала с сервера
+	 * @return {[type]} [description]
+	 */
 	loadLinks(){
 		this.collection.fetch({
 			data : { serial : this.serial.toJSON() }
@@ -48,6 +54,14 @@ class LinksSearch extends Backbone.View{
 		} else{
 			this.model.set( 'noresult' , false );
 		}
+	}
+
+	openSearchedLink( e ){
+		let link = $( e.currentTarget ).attr('href');
+		console.log('openLink event' , link );
+		if( link ){
+			redirectTab( link );
+		} else { console.error('Dont isset serial link'); }
 	}
 }
 

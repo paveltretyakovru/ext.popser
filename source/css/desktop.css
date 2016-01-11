@@ -28,6 +28,8 @@ h3 { font-size: 18px }
 
 /* HOME PAGE START */
 #page-home{  }
+  
+  #page-home input { text-transform: uppercase; }
 
   #page-home header{
     display         : flex;
@@ -94,6 +96,9 @@ h3 { font-size: 18px }
           -ms-transform     : rotate(360deg);
           transform         : rotate(360deg);
         }
+
+    #page-home #panel-serial-link{}
+      #page-home #panel-serial-link .input-group{ margin-top: 5px; }
 
     #page-home #panel-serial-delete div:first-child{
       display     : flex;

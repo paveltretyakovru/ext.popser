@@ -30,6 +30,7 @@ class Serial extends Backbone.View{
 			 	'click #button-serial-delete'			: 'deleteSerial' 	,
 			 	'click #button-serial-set-current-url'	: 'setCurrentUrl'	,
 			 	'click #button-serial-go-to-link'		: 'openLink'		,
+			 	'click #button-serial-go-to-lastlink'	: 'openLastLink'	,
 			 	'click #button-serial-serach-links'		: 'searchLinks'
 			 }
 		});
@@ -177,6 +178,19 @@ class Serial extends Backbone.View{
 	}
 
 	/**
+	 * Открывает страницу в текущей вкладке, указанную в поле "ссылка"
+	 * @param  {JQuery event object} e Обычный event объект JQuery
+	 * @return {void}   Открывает страницу
+	 */
+	openLastLink( e ){
+		let lastlink = this.model.get('lastlink');
+		console.log('openlastlink event' , lastlink );
+		if( lastlink ){
+			redirectTab( lastlink );
+		} else { console.error('Dont isset serial lastlink'); }
+	}
+
+	/**
 	 * Поиск ссылок для текущего сериала
 	 * @param  {JQuery event object} e Обычный event объект JQuery
 	 * @return {void}   Выводит список найденых ссылок
@@ -197,14 +211,12 @@ class Serial extends Backbone.View{
 	 */
 	checkLink( callback ){
 		getTabTitle( ( title ) => {
-			console.log('CHECK TITLE' , title );
 			var title = title.toLowerCase();
 			getTabUrl( ( url ) => {
-				if( url != this.model.get('link') ){
-					let modeltitle = this.model.get('title');
-					console.log('CHECK DATA' , title , url );
+				if( url != this.model.get('lastlink`') ){
+					var modeltitle = this.model.get('title');
 					if( title.indexOf( modeltitle.toLowerCase() ) !== -1 ){
-						this.model.set( 'link' , url );
+						this.model.set( 'lastlink' , url );
 					}
 				}
 				callback();
