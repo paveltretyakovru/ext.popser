@@ -70,6 +70,7 @@ class Serial extends Backbone.View{
 	incrementSeason( e ){
 		let val = parseInt( this.model.get('season') , 10 );
 		this.model.set('season' , val + 1 );
+		this.setSerieValue( 1 );
 		this.model.save();
 		this.checkLink( () => { this.model.save(); });
 	}
@@ -78,6 +79,7 @@ class Serial extends Backbone.View{
 		
 		if( val !== 0 ){
 			this.model.set('season' , val - 1 );
+			this.setSerieValue( 1 );
 			this.model.save();
 			this.checkLink( () => { this.model.save(); });
 		}
@@ -98,6 +100,9 @@ class Serial extends Backbone.View{
 			this.checkLink( () => { this.model.save(); });
 		}
 	}
+
+	setSeasonValue( num ){ this.model.set( 'season' , num ); }
+	setSerieValue( num ){ this.model.set( 'serie' , num ); }
 	// #### Методы для обновления счетчиков сериала КОНЕЦ #### //
 
 	/**

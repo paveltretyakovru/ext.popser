@@ -139,6 +139,9 @@ h3 { font-size: 18px }
 
 /* HOME PAGE END */
 
+/* PLUGINS CHANGE START*/
+  a.ui-corner-all{ text-transform: uppercase; }
+/* PLUGINS CHANGE END */
 /* Accordion code */
 .accordion h2 {
   font-size: 18px;
