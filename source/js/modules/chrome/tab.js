@@ -9,17 +9,21 @@ export let getTab = ( callback ) => {
 }
 
 export let getTabUrl = ( callback , encode ) => {
+	var url = '';
 	getTab( ( Tab ) => {
 		if( callback ){
-			return ( encode ) ? callback( encodeURIComponent( Tab.url ) ) : callback( Tab.url );
+			if ( 'url' in Tab ){ url = Tab.url }
+			return ( encode ) ? callback( encodeURIComponent( url ) ) : callback( url );
 		}
 	});	
 }
 
 export let getTabTitle = ( callback , encode ) => {
+	var title = '';
 	getTab( ( Tab ) => {
 		if( callback ){
-			return ( encode ) ? callback( encodeURIComponent( Tab.title ) ) : callback( Tab.title );
+			if( 'title' in Tab ){ title = Tab.title.toLowerCase(); }
+			return ( encode ) ? callback( encodeURIComponent( title ) ) : callback( title );
 		}
 	});	
 }

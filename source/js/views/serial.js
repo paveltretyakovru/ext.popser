@@ -71,32 +71,25 @@ class Serial extends Backbone.View{
 		let val = parseInt( this.model.get('season') , 10 );
 		this.model.set('season' , val + 1 );
 		this.setSerieValue( 1 );
-		this.model.save();
 		this.checkLink( () => { this.model.save(); });
 	}
 	decrementSeason( e ){
-		let val = parseInt( this.model.get('season') , 10 );		
-		
+		let val = parseInt( this.model.get('season') , 10 );
 		if( val !== 0 ){
 			this.model.set('season' , val - 1 );
 			this.setSerieValue( 1 );
-			this.model.save();
 			this.checkLink( () => { this.model.save(); });
 		}
 	}
 	incrementSerie( e ){
 		let val = parseInt( this.model.get('serie') , 10 );
-
 		this.model.set('serie' , val + 1 );
-		this.model.save();
 		this.checkLink( () => { this.model.save(); });
 	}
 	decrementSerie( e ){
-		let val = parseInt( this.model.get('serie') , 10 );		
-		
+		let val = parseInt( this.model.get('serie') , 10 );
 		if( val !== 0 ){
 			this.model.set('serie' , val - 1 );
-			this.model.save();
 			this.checkLink( () => { this.model.save(); });
 		}
 	}
@@ -215,15 +208,18 @@ class Serial extends Backbone.View{
 	 * @return {void}            выполняет заданный callback
 	 */
 	checkLink( callback ){
+		var modeltitle = this.model.get('title');
 		getTabTitle( ( title ) => {
-			var title = title.toLowerCase();
 			getTabUrl( ( url ) => {
-				if( url != this.model.get('lastlink`') ){
-					var modeltitle = this.model.get('title');
-					if( title.indexOf( modeltitle.toLowerCase() ) !== -1 ){
+				// Если адрес текущей вкладки не равен адресу предыдущией серии || сезона
+				if( url != this.model.get('lastlink`') && url !== '' ){
+					// Если заголовок страницы содержит название сериала
+					if( title.indexOf( modeltitle ) !== -1 ){
+						this.model.set( 'titlelink' , title );
 						this.model.set( 'lastlink' , url );
 					}
 				}
+				// В лбюмо случае выполняем callback()
 				callback();
 			});
 		});
